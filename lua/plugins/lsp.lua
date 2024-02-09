@@ -54,6 +54,7 @@ return {
             lspconfig.tsserver.setup({
                 capabilities = capabilities,
             })
+            lspconfig.cssls.setup({})
 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})

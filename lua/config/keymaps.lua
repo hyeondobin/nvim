@@ -44,7 +44,7 @@ wk.register(
             name = "Files",
             f = { "<cmd>Telescope find_files<CR>", "Find File" },
             g = { require('telescope.builtin').live_grep, "Grep File" },
-            c = { "<cmd>Telescope "},
+            c = { function() require('telescope.builtin').find_files({ cwd = '~/Appdata/Local/nvim', prompt_title = 'Neovim Config' }) end, "Config Files" },
             r = { "<cmd>Telescope oldfiles<CR>", "Find Recent" },
         },
         c = {
@@ -52,19 +52,21 @@ wk.register(
             e = { "<cmd>e ~/Appdata/Local/nvim/init.lua<CR>", "Config Edit" },
             s = { "<cmd>w<CR><CMD>so<CR>", "save and Source" },
             m = { "<CMD>Mason<CR>", "Mason" },
+            d = { "<CMD>cd %:h<CR>", "Cd to current file" },
         },
-        e = { "<CMD>Oil --float<CR>", "Open parent directory" },
         ["<space>"] = { require'telescope.builtin'.find_files , "Find File" },
         s = {
             name = "Search",
-            d = { "<CMD>Telescope diagnostics<CR>", "search Diagnostics" },
+            d = { "<CMD>Telescope diagnostics<CR>", "Search Diagnostics" },
+            h = { "<CMD>Telescope help_tags<CR>", "Search Help" },
+            k = { "<CMD>Telescope keymaps<CR>", "Search Keymaps" },
         },
-        d = {
-        name = "Drive",
-            c = { "<cmd>Oil --float C:\\<CR>", "Drive C:\\" },
-            d = { "<cmd>Oil --float D:\\<CR>", "Drive D:\\" },
-            f = { "<cmd>Oil --float F:\\<CR>", "Drive F:\\" },
-        },
+        -- d = {
+        -- name = "Drive",
+        --     c = { "<cmd>Oil --float C:\\<CR>", "Drive C:\\" },
+        --     d = { "<cmd>Oil --float D:\\<CR>", "Drive D:\\" },
+        --     f = { "<cmd>Oil --float F:\\<CR>", "Drive F:\\" },
+        -- },
     }, { prefix = "<leader>" }
 )
 

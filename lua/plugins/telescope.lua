@@ -33,6 +33,9 @@ return {
                         ".next",
                     },
                     hidden = true,
+                    layout_config = {
+                        vertical = { width = 0.8 },
+                    },
                 },
                 extensions = {
                     fzf = {
