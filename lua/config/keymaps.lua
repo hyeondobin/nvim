@@ -43,7 +43,24 @@ local ts = require("telescope")
 
 -- lazygit terminal locals
 local Terminal = require("toggleterm.terminal").Terminal
-local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
+local lazygit = Terminal:new({
+	cmd = "lazygit",
+	dir = "git_dir",
+	count = 7,
+	hidden = true,
+	direction = "float",
+	float_opts = {
+		border = "double",
+	},
+	on_open = function(term)
+		vim.cmd("startinsert!")
+		vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+	end,
+
+	on_close = function(term)
+		vim.cmd("startinsert!")
+	end,
+})
 local function _lazygit_toggle()
 	lazygit:toggle()
 end
@@ -74,6 +91,12 @@ wk.register({
 		d = { "<CMD>Telescope diagnostics<CR>", "Search Diagnostics" },
 		h = { "<CMD>Telescope help_tags<CR>", "Search Help" },
 		k = { "<CMD>Telescope keymaps<CR>", "Search Keymaps" },
+	},
+	e = {
+		function()
+			require("mini.files").open()
+		end,
+		"Open mini.files",
 	},
 	d = {
 		name = "Drive",
@@ -107,4 +130,5 @@ wk.register({
 	["<leader>rs"] = { "<CMD>lua require'persistence'.load({ last = true })<CR>", "Restore Session" },
 })
 
+-- terminal keymaps
 keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Enter Normal mode with Esc" })
