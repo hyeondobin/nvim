@@ -103,13 +103,13 @@ wk.register({
 		name = "Drive",
 		c = {
 			function()
-				require("mini.files").open("C:/")
+				require("mini.files").open("C:/", false, {})
 			end,
 			"Drive C:\\",
 		},
 		f = {
 			function()
-				require("mini.files").open("F:/")
+				require("mini.files").open("F:/", false, {})
 			end,
 			"Drive D:\\",
 		},
