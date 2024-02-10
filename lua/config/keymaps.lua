@@ -90,6 +90,7 @@ wk.register({
 		d = { "<CMD>Telescope diagnostics<CR>", "Search Diagnostics" },
 		h = { "<CMD>Telescope help_tags<CR>", "Search Help" },
 		k = { "<CMD>Telescope keymaps<CR>", "Search Keymaps" },
+		o = { "<CMD>Telescope vim_options<CR>", "Search Options" },
 	},
 	e = {
 		function()
