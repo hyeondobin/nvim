@@ -30,10 +30,10 @@ keymap.set("n", "#", "#zz", opts)
 keymap.set("n", "gg", "ggzz", opts)
 keymap.set("n", "G", "Gzz", opts)
 keymap.set("n", "S", function()
-	local cmd = ":%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>"
+	local cmd = ":%s/<C-r><C-w>//gI<Left><Left><Left>"
 	local keys = vim.api.nvim_replace_termcodes(cmd, true, false, true)
 	vim.api.nvim_feedkeys(keys, "n", false)
-end, opts)
+end, { noremap = true, desc = { "Rename word under cursor" } })
 
 -- Utils
 vim.keymap.set("i", "<C-=>", "<C-O>VY<C-O>$=<C-R><C-=><C-R>*<CR>", { desc = "Calculate current line" })
@@ -127,7 +127,6 @@ wk.register({
 
 wk.register({
 	K = { vim.lsp.buf.hover, "LSP Hover" },
-	["<leader>rs"] = { "<CMD>lua require'persistence'.load({ last = true })<CR>", "Restore Session" },
 })
 
 -- terminal keymaps
