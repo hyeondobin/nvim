@@ -32,13 +32,15 @@ return {
 		"echasnovski/mini.starter",
 		version = false,
 		config = function()
-			require("mini.starter").setup({})
+			require("mini.starter").setup()
 		end,
 	},
 	{
 		"echasnovski/mini.sessions",
 		version = false,
-		config = true,
+		config = function()
+			require("mini.sessions").setup()
+		end,
 	},
 	{
 		"echasnovski/mini.animate",
