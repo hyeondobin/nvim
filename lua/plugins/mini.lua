@@ -9,6 +9,10 @@ return {
 					go_in = "<CR>",
 					go_out = "-",
 				},
+				windows = {
+					preview = true,
+					width_preview = 100,
+				},
 			})
 		end,
 	},
@@ -28,14 +32,29 @@ return {
 		"echasnovski/mini.starter",
 		version = false,
 		config = function()
-			require("mini.starter").setup({
-                
-            })
+			require("mini.starter").setup({})
 		end,
 	},
-    {
-        "echasnovski/mini.sessions",
-        version = false,
-        config = true,
-    },
+	{
+		"echasnovski/mini.sessions",
+		version = false,
+		config = true,
+	},
+	{
+		"echasnovski/mini.animate",
+		version = false,
+		config = function()
+			require("mini.animate").setup({
+				scroll = {
+					enable = false,
+				},
+				open = {
+					enable = false,
+				},
+				close = {
+					enable = false,
+				},
+			})
+		end,
+	},
 }
