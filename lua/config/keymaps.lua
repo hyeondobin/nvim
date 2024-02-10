@@ -47,7 +47,6 @@ local lazygit = Terminal:new({
 	cmd = "lazygit",
 	dir = "git_dir",
 	count = 7,
-	hidden = true,
 	direction = "float",
 	float_opts = {
 		border = "double",
@@ -57,7 +56,7 @@ local lazygit = Terminal:new({
 		vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
 	end,
 
-	on_close = function(term)
+	on_close = function()
 		vim.cmd("startinsert!")
 	end,
 })
