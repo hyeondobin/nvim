@@ -132,3 +132,19 @@ wk.register({
 
 -- terminal keymaps
 keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Enter Normal mode with Esc" })
+
+-- mini.files
+local show_preview
+local MiniFiles = require("mini.files")
+local toggle_preview = function()
+	show_preview = not show_preview
+	MiniFiles.refresh({ windows = { preview = show_preview } })
+end
+
+vim.api.nvim_create_autocmd("User", {
+	pattern = "MiniFilesBufferCreate",
+	callback = function(args)
+		local buf_id = args.data.buf_id
+		keymap.set("n", "<leader>p", toggle_preview, { buffer = buf_id })
+	end,
+})
