@@ -113,6 +113,7 @@ wk.register({
 			end,
 			"Drive D:\\",
 		},
+		h = { "<CMD>cd %:h<CR>", "cd to current file" },
 	},
 	t = {
 		name = "Terminal",
@@ -125,10 +126,6 @@ wk.register({
 		o = { "<CMD>ToggleTerm size=40 direction=horizontal<CR>", "Terminal: Open" },
 	},
 }, { prefix = "<leader>" })
-
-wk.register({
-	K = { vim.lsp.buf.hover, "LSP Hover" },
-})
 
 -- terminal keymaps
 keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Enter Normal mode with Esc" })
