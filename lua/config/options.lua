@@ -6,7 +6,7 @@ opt.shiftwidth = 4
 opt.softtabstop = 4
 opt.expandtab = true
 opt.smartindent = true
-opt.wrap = false
+opt.wrap = true
 
 -- Search
 opt.hlsearch = false
@@ -47,15 +47,7 @@ opt.encoding = "UTF-8"
 
 opt.isfname:append("@-@")
 
-
 opt.updatetime = 50
 opt.conceallevel = 0
 opt.ttimeoutlen = 200
 
--- terminal
-opt.shell = vim.fn.executable "pwsh" and "pwsh" or "powershell"
-opt.shellcmdflag = "-Nologo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
-opt.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
-opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
-opt.shellquote = ""
-opt.shellxquote = ""
