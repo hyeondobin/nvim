@@ -2,7 +2,6 @@ local keymap = vim.keymap
 local opts = { noremap = true, silent = false }
 local wk = require("which-key")
 
-
 -- Pane Navigation
 keymap.set("n", "<C-h>", "<C-w>h", opts)
 keymap.set("n", "<C-j>", "<C-w>j", opts)
@@ -12,7 +11,6 @@ keymap.set("n", "<C-l>", "<C-w>l", opts)
 -- Window Management
 keymap.set("n", "<leader>sv", "<cmd>vsplit<CR>", opts)
 keymap.set("n", "<leader>sh", "<cmd>split<CR>", opts)
-
 
 -- Call Lazy
 keymap.set("n", "<leader>l", "<cmd>Lazy<CR>", opts)
@@ -31,50 +29,82 @@ keymap.set("n", "*", "*zz", opts)
 keymap.set("n", "#", "#zz", opts)
 keymap.set("n", "gg", "ggzz", opts)
 keymap.set("n", "G", "Gzz", opts)
-keymap.set("n", "S", function ()
-    local cmd = ":%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>"
-    local keys = vim.api.nvim_replace_termcodes(cmd, true, false, true)
-    vim.api.nvim_feedkeys(keys, "n", false)
+keymap.set("n", "S", function()
+	local cmd = ":%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>"
+	local keys = vim.api.nvim_replace_termcodes(cmd, true, false, true)
+	vim.api.nvim_feedkeys(keys, "n", false)
 end, opts)
 
-local ts = require('telescope')
-wk.register(
-    {
-        f = {
-            name = "Files",
-            f = { "<cmd>Telescope find_files<CR>", "Find File" },
-            g = { require('telescope.builtin').live_grep, "Grep File" },
-            c = { function() require('telescope.builtin').find_files({ cwd = '~/Appdata/Local/nvim', prompt_title = 'Neovim Config' }) end, "Config Files" },
-            r = { "<cmd>Telescope oldfiles<CR>", "Find Recent" },
-        },
-        c = {
-            name = "config",
-            e = { "<cmd>e ~/Appdata/Local/nvim/init.lua<CR>", "Config Edit" },
-            s = { "<cmd>w<CR><CMD>so<CR>", "save and Source" },
-            m = { "<CMD>Mason<CR>", "Mason" },
-            d = { "<CMD>cd %:h<CR>", "Cd to current file" },
-        },
-        ["<space>"] = { require'telescope.builtin'.find_files , "Find File" },
-        s = {
-            name = "Search",
-            d = { "<CMD>Telescope diagnostics<CR>", "Search Diagnostics" },
-            h = { "<CMD>Telescope help_tags<CR>", "Search Help" },
-            k = { "<CMD>Telescope keymaps<CR>", "Search Keymaps" },
-        },
-        -- d = {
-        -- name = "Drive",
-        --     c = { "<cmd>Oil --float C:\\<CR>", "Drive C:\\" },
-        --     d = { "<cmd>Oil --float D:\\<CR>", "Drive D:\\" },
-        --     f = { "<cmd>Oil --float F:\\<CR>", "Drive F:\\" },
-        -- },
-    }, { prefix = "<leader>" }
-)
+-- Utils
+vim.keymap.set("i", "<C-=>", "<C-O>VY<C-O>$=<C-R><C-=><C-R>*<CR>", { desc = "Calculate current line" })
 
-wk.register(
-    {
-        K = { vim.lsp.buf.hover, "LSP Hover" },
-        ["<leader>rs"] = {  "<CMD>lua require'persistence'.load({ last = true })<CR>", "Restore Session" }
-    }
-)
+-- leader mapping with which key
+local ts = require("telescope")
 
-keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = "Enter Normal mode with Esc" })
+-- lazygit terminal locals
+local Terminal = require("toggleterm.terminal").Terminal
+local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
+local function _lazygit_toggle()
+	lazygit:toggle()
+end
+
+wk.register({
+	f = {
+		name = "Files",
+		f = { "<cmd>Telescope find_files<CR>", "Find File" },
+		g = { require("telescope.builtin").live_grep, "Grep File" },
+		c = {
+			function()
+				require("telescope.builtin").find_files({ cwd = "~/Appdata/Local/nvim", prompt_title = "Neovim Config" })
+			end,
+			"Config Files",
+		},
+		r = { "<cmd>Telescope oldfiles<CR>", "Find Recent" },
+	},
+	c = {
+		name = "config",
+		e = { "<cmd>e ~/Appdata/Local/nvim/init.lua<CR>", "Config Edit" },
+		s = { "<cmd>w<CR><CMD>so<CR>", "save and Source" },
+		m = { "<CMD>Mason<CR>", "Mason" },
+		d = { "<CMD>cd %:h<CR>", "Cd to current file" },
+	},
+	["<space>"] = { require("telescope.builtin").find_files, "Find File" },
+	s = {
+		name = "Search",
+		d = { "<CMD>Telescope diagnostics<CR>", "Search Diagnostics" },
+		h = { "<CMD>Telescope help_tags<CR>", "Search Help" },
+		k = { "<CMD>Telescope keymaps<CR>", "Search Keymaps" },
+	},
+	d = {
+		name = "Drive",
+		c = {
+			function()
+				require("mini.files").open("C:/")
+			end,
+			"Drive C:\\",
+		},
+		f = {
+			function()
+				require("mini.files").open("F:/")
+			end,
+			"Drive D:\\",
+		},
+	},
+	t = {
+		name = "Terminal",
+		g = {
+			function()
+				_lazygit_toggle()
+			end,
+			"Terminal: Lazygit",
+		},
+		o = { "<CMD>ToggleTerm size=40 direction=horizontal<CR>", "Terminal: Open" },
+	},
+}, { prefix = "<leader>" })
+
+wk.register({
+	K = { vim.lsp.buf.hover, "LSP Hover" },
+	["<leader>rs"] = { "<CMD>lua require'persistence'.load({ last = true })<CR>", "Restore Session" },
+})
+
+keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Enter Normal mode with Esc" })
