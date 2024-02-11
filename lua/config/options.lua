@@ -21,7 +21,7 @@ opt.termguicolors = true
 opt.signcolumn = "yes"
 opt.colorcolumn = "100"
 opt.cmdheight = 1
-opt.scrolloff = 20
+opt.scrolloff = 999
 opt.completeopt = "menuone"
 
 -- font
@@ -37,17 +37,15 @@ opt.undofile = true
 opt.backspace = "indent,eol,start"
 opt.splitright = true
 opt.splitbelow = true
-opt.autochdir = false
+opt.autochdir = true
 opt.iskeyword:append("-")
 opt.mouse:append("a")
 opt.clipboard:append("unnamedplus")
 opt.modifiable = true
 opt.encoding = "UTF-8"
 
-
 opt.isfname:append("@-@")
 
 opt.updatetime = 50
 opt.conceallevel = 0
 opt.ttimeoutlen = 200
-
