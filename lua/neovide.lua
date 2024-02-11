@@ -38,6 +38,8 @@ vim.g.neovide_transparency = 0.5
 
 -- padding
 vim.g.neovide_padding_top = 30
+vim.g.neovide_padding_left = 10
+vim.g.neovide_padding_right = 10
 
 -- scroll animation
 vim.g.neovide_scroll_animation_length = 0.7
