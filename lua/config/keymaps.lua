@@ -43,6 +43,16 @@ local ts = require("telescope")
 
 -- lazygit terminal locals
 local Terminal = require("toggleterm.terminal").Terminal
+local openTerm = Terminal:new({
+	on_open = function(term)
+		vim.cmd("startinsert!")
+		vim.api.nvim_buf_set_keymap(term.bufnr, "n", "<leader>q", "<cmd>close<CR>", { noremap = true, silent = true })
+	end,
+
+	on_close = function()
+		vim.cmd("startinsert!")
+	end,
+})
 local lazygit = Terminal:new({
 	cmd = "lazygit",
 	dir = "git_dir",
@@ -124,7 +134,12 @@ wk.register({
 			end,
 			"Terminal: Lazygit",
 		},
-		o = { "<CMD>ToggleTerm size=40 direction=horizontal<CR>", "Terminal: Open" },
+		o = {
+			function()
+				openTerm:toggle()
+			end,
+			"Terminal: Open",
+		},
 	},
 }, { prefix = "<leader>" })
 
