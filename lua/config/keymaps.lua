@@ -125,6 +125,22 @@ wk.register({
 		},
 		o = { "<CMD>ToggleTerm size=40 direction=horizontal<CR>", "Terminal: Open" },
 	},
+    n = {
+        name = "Neovide",
+        t = {
+            function()
+                local is_tranparent = vim.g.neovide_transparency
+                if is_tranparent ~= 1 then
+                    vim.g.neovide_transparency = 1
+                    is_tranparent = not is_tranparent
+                else
+                    vim.g.neovide_transparency = 0.5
+                    is_tranparent = not is_tranparent
+                end
+            end,
+            "toggle Transparency",
+        },
+    },
 }, { prefix = "<leader>" })
 
 -- terminal keymaps
