@@ -2,13 +2,11 @@ return {
     {
         "nvim-lualine/lualine.nvim",
         event = "VeryLazy",
-        config = function ()
+        config = function()
             require("lualine").setup({
                 options = {
                     theme = "catppuccin",
                     globalstatus = true,
-                    component_separators = { left = "", right = "" },
-                    section_separators = { left = "█", right = "█" },
                 },
                 sections = {
                     lualine_b = {
@@ -19,10 +17,10 @@ return {
                         { "filename", path = 1 },
                     },
                     lualine_x = {
-                        {"filetype",}
+                        { "filetype" },
                     },
                 },
             })
-        end
-    }
+        end,
+    },
 }
