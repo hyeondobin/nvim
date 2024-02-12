@@ -10,10 +10,12 @@ return {
 				-- formatting
 				null_ls.builtins.formatting.stylua,
 				null_ls.builtins.formatting.prettier,
+				null_ls.builtins.formatting.gdformat,
 
 				-- linting
 				null_ls.builtins.diagnostics.selene,
 				null_ls.builtins.diagnostics.eslint_d,
+				null_ls.builtins.diagnostics.gdlint,
 			},
 
 			on_attach = function(client, bufnr)
