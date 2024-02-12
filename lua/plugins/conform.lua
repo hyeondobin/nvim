@@ -8,6 +8,8 @@ return {
 					lua = { "stylua" },
 					javascript = { { "prettierd", "prettier" } },
 					gdscript = { "gdformat" },
+					rust = { "rustfmt" },
+					markdown = { " markdownlint" },
 				},
 				format_on_save = {
 					timeout_ms = 500,
