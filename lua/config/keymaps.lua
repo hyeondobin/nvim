@@ -30,117 +30,121 @@ keymap.set("n", "#", "#zz", opts)
 keymap.set("n", "gg", "ggzz", opts)
 keymap.set("n", "G", "Gzz", opts)
 keymap.set("n", "S", function()
-	local cmd = ":%s/<C-r><C-w>//gI<Left><Left><Left>"
-	local keys = vim.api.nvim_replace_termcodes(cmd, true, false, true)
-	vim.api.nvim_feedkeys(keys, "n", false)
+    local cmd = ":%s/<C-r><C-w>//gI<Left><Left><Left>"
+    local keys = vim.api.nvim_replace_termcodes(cmd, true, false, true)
+    vim.api.nvim_feedkeys(keys, "n", false)
+end, { noremap = true, desc = { "Rename word under cursor" } })
+keymap.set("v", "S", function()
+    local cmd = ":s//gI<Left><Left><Left>"
+    local keys = vim.api.nvim_replace_termcodes(cmd, true, false, true)
+    vim.api.nvim_feedkeys(keys, "n", false)
 end, { noremap = true, desc = { "Rename word under cursor" } })
 
 -- Utils
 vim.keymap.set("i", "<C-=>", "<C-O>VY<C-O>$=<C-R><C-=><C-R>*<CR>", { desc = "Calculate current line" })
 
 -- leader mapping with which key
-local ts = require("telescope")
 
 -- lazygit terminal locals
 local Terminal = require("toggleterm.terminal").Terminal
 local openTerm = Terminal:new({
-	on_open = function(term)
-		vim.cmd("startinsert!")
-		vim.api.nvim_buf_set_keymap(term.bufnr, "n", "<leader>q", "<cmd>close<CR>", { noremap = true, silent = true })
-	end,
+    on_open = function(term)
+        vim.cmd("startinsert!")
+        vim.api.nvim_buf_set_keymap(term.bufnr, "n", "<leader>q", "<cmd>close<CR>", { noremap = true, silent = true })
+    end,
 
-	on_close = function()
-		vim.cmd("startinsert!")
-	end,
+    on_close = function()
+        vim.cmd("startinsert!")
+    end,
 })
 local lazygit = Terminal:new({
-	cmd = "lazygit",
-	dir = "git_dir",
-	hidden = true,
-	count = 7,
-	direction = "float",
-	float_opts = {
-		border = "double",
-	},
-	on_open = function(term)
-		vim.cmd("startinsert!")
-		vim.api.nvim_buf_set_keymap(term.bufnr, "n", "<leader>q", "<cmd>close<CR>", { noremap = true, silent = true })
-	end,
+    cmd = "lazygit",
+    dir = "git_dir",
+    hidden = true,
+    count = 7,
+    direction = "float",
+    float_opts = {
+        border = "double",
+    },
+    on_open = function(term)
+        vim.cmd("startinsert!")
+        vim.api.nvim_buf_set_keymap(term.bufnr, "n", "<leader>q", "<cmd>close<CR>", { noremap = true, silent = true })
+    end,
 
-	on_close = function()
-		vim.cmd("startinsert!")
-	end,
+    on_close = function()
+        vim.cmd("startinsert!")
+    end,
 })
 local function _lazygit_toggle()
-	lazygit:toggle()
+    lazygit:toggle()
 end
 
 wk.register({
-	f = {
-		name = "Files",
-		f = { "<cmd>Telescope find_files<CR>", "Find File" },
-		g = { require("telescope.builtin").live_grep, "Grep File" },
-		c = {
-			function()
-				require("telescope.builtin").find_files({ cwd = "~/Appdata/Local/nvim", prompt_title = "Neovim Config" })
-			end,
-			"Config Files",
-		},
-		r = { "<cmd>Telescope oldfiles<CR>", "Find Recent" },
-	},
-	c = {
-		name = "config",
-		e = { "<cmd>e ~/Appdata/Local/nvim/init.lua<CR>", "Config Edit" },
-		s = { "<cmd>w<CR><CMD>so<CR>", "save and Source" },
-		m = { "<CMD>Mason<CR>", "Mason" },
-		d = { "<CMD>cd %:h<CR>", "Cd to current file" },
-	},
-	["<space>"] = { require("telescope.builtin").find_files, "Find File" },
-	s = {
-		name = "Search",
-		d = { "<CMD>Telescope diagnostics<CR>", "Search Diagnostics" },
-		h = { "<CMD>Telescope help_tags<CR>", "Search Help" },
-		k = { "<CMD>Telescope keymaps<CR>", "Search Keymaps" },
-		o = { "<CMD>Telescope vim_options<CR>", "Search Options" },
-		b = { "<CMD>Telescope buffers<CR>", "Search Buffers" },
-	},
-	e = {
-		function()
-			require("mini.files").open()
-		end,
-		"Open mini.files",
-	},
-	d = {
-		name = "Drive",
-		c = {
-			function()
-				require("mini.files").open("C:/", false, {})
-			end,
-			"Drive C:\\",
-		},
-		f = {
-			function()
-				require("mini.files").open("F:/", false, {})
-			end,
-			"Drive D:\\",
-		},
-		h = { "<CMD>cd %:h<CR>", "cd to current file" },
-	},
-	t = {
-		name = "Terminal",
-		g = {
-			function()
-				_lazygit_toggle()
-			end,
-			"Terminal: Lazygit",
-		},
-		o = {
-			function()
-				openTerm:toggle()
-			end,
-			"Terminal: Open",
-		},
-	},
+    f = {
+        name = "Files",
+        f = { "<cmd>Telescope find_files<CR>", "Find File" },
+        g = { require("telescope.builtin").live_grep, "Grep File" },
+        c = {
+            function()
+                require("telescope.builtin").find_files({ cwd = "~/Appdata/Local/nvim", prompt_title = "Neovim Config" })
+            end,
+            "Config Files",
+        },
+        r = { "<cmd>Telescope oldfiles<CR>", "Find Recent" },
+    },
+    c = {
+        name = "config",
+        e = { "<cmd>e ~/Appdata/Local/nvim/init.lua<CR>", "Config Edit" },
+        s = { "<cmd>w<CR><CMD>so<CR>", "save and Source" },
+        m = { "<CMD>Mason<CR>", "Mason" },
+        d = { "<CMD>cd %:h<CR>", "Cd to current file" },
+    },
+    ["<space>"] = { require("telescope.builtin").find_files, "Find File" },
+    s = {
+        name = "Search",
+        d = { "<CMD>Telescope diagnostics<CR>", "Search Diagnostics" },
+        h = { "<CMD>Telescope help_tags<CR>", "Search Help" },
+        k = { "<CMD>Telescope keymaps<CR>", "Search Keymaps" },
+        o = { "<CMD>Telescope vim_options<CR>", "Search Options" },
+        b = { "<CMD>Telescope buffers<CR>", "Search Buffers" },
+    },
+    e = {
+        function()
+            require("mini.files").open()
+        end,
+        "Open mini.files",
+    },
+    d = {
+        name = "Drive",
+        c = {
+            function()
+                require("mini.files").open("C:/", false, {})
+            end,
+            "Drive C:\\",
+        },
+        f = {
+            function()
+                require("mini.files").open("F:/", false, {})
+            end,
+            "Drive D:\\",
+        },
+        h = { "<CMD>cd %:h<CR>", "cd to current file" },
+    },
+    t = {
+        name = "Terminal",
+        g = {
+            function()
+                _lazygit_toggle()
+            end,
+            "Terminal: Lazygit",
+        },
+        o = {
+            function()
+                openTerm:toggle()
+            end,
+            "Terminal: Open",
+        },
+    },
     n = {
         name = "Neovide",
         t = {
@@ -148,10 +152,8 @@ wk.register({
                 local is_tranparent = vim.g.neovide_transparency
                 if is_tranparent ~= 1 then
                     vim.g.neovide_transparency = 1
-                    is_tranparent = not is_tranparent
                 else
                     vim.g.neovide_transparency = 0.5
-                    is_tranparent = not is_tranparent
                 end
             end,
             "toggle Transparency",
@@ -166,14 +168,14 @@ keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Enter Normal mode with Esc" })
 local show_preview
 local MiniFiles = require("mini.files")
 local toggle_preview = function()
-	show_preview = not show_preview
-	MiniFiles.refresh({ windows = { preview = show_preview } })
+    show_preview = not show_preview
+    MiniFiles.refresh({ windows = { preview = show_preview } })
 end
 
 vim.api.nvim_create_autocmd("User", {
-	pattern = "MiniFilesBufferCreate",
-	callback = function(args)
-		local buf_id = args.data.buf_id
-		keymap.set("n", "<leader>p", toggle_preview, { buffer = buf_id })
-	end,
+    pattern = "MiniFilesBufferCreate",
+    callback = function(args)
+        local buf_id = args.data.buf_id
+        keymap.set("n", "<leader>p", toggle_preview, { buffer = buf_id })
+    end,
 })
