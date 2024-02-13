@@ -15,6 +15,10 @@ keymap.set("n", "<leader>sh", "<cmd>split<CR>", opts)
 -- Call Lazy
 keymap.set("n", "<leader>l", "<cmd>Lazy<CR>", opts)
 
+-- Move line
+keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = false, desc = "Move Line Up" })
+keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = false, desc = "Move Line Down" })
+
 -- Center buffer while navigating
 keymap.set("n", "{", "{zz", opts)
 keymap.set("n", "}", "}zz", opts)
