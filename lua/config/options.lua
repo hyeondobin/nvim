@@ -25,8 +25,10 @@ opt.scrolloff = 999
 opt.completeopt = "menuone"
 
 -- font
-opt.guifont = "D2CodingLigature Nerd Font:h15:cHANGEUL"
-opt.guifont = "FiraCode Nerd Font Mono:h15"
+-- 한글 폰트
+opt.guifont = "D2CodingLigature Nerd Font:h10:cHANGEUL"
+-- 기본 폰트
+opt.guifont = "FiraCode Nerd Font Mono:h15:cDEFAULT"
 
 -- Behaviour
 opt.hidden = true
