@@ -23,6 +23,7 @@ opt.colorcolumn = "100"
 opt.cmdheight = 1
 opt.scrolloff = 999
 opt.completeopt = "menuone"
+opt.cursorline = true
 
 -- font
 -- 한글 폰트
