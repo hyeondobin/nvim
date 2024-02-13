@@ -7,7 +7,6 @@ return {
 				formatters_by_ft = {
 					lua = { "stylua" },
 					javascript = { { "prettierd", "prettier" } },
-					gdscript = { "gdformat" },
 					rust = { "rustfmt" },
 					markdown = { " markdownlint" },
 				},
