@@ -8,6 +8,9 @@ return {
 		},
 	},
 	{
+		"hrsh7th/cmp-nvim-lsp",
+	},
+	{
 		"hrsh7th/nvim-cmp",
 		lazy = false,
 		dependencies = {
@@ -62,17 +65,11 @@ return {
 					{ name = "nvim_lua" },
 					{ name = "luasnip" },
 					{ name = "path" },
+				}, {
 					{ name = "buffer", keyword_length = 3 },
 				}),
 
-				formatting = {
-					fields = { "menu", "abbr", "kind" },
-					format = require("lspkind").cmp_format({
-						mode = "symbol",
-						maxwidth = 50,
-						ellipsis_char = "...",
-					}),
-				},
+				formatting = cmp_format,
 			})
 
 			cmp.setup.filetype("gitcommit", {
