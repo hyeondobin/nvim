@@ -25,7 +25,8 @@ opt.scrolloff = 999
 opt.completeopt = "menuone"
 
 -- font
-opt.guifont = "FiraCode Nerd Font:h15:b"
+opt.guifont = "D2CodingLigature Nerd Font:h15:cHANGEUL"
+opt.guifont = "FiraCode Nerd Font Mono:h15"
 
 -- Behaviour
 opt.hidden = true
