@@ -67,7 +67,7 @@ local openTerm = Terminal:new({
 	end,
 })
 local lazygit = Terminal:new({
-	cmd = "tig",
+	cmd = "sh -c tig",
 	dir = "git_dir",
 	hidden = true,
 	count = 7,
