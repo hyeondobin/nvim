@@ -14,11 +14,13 @@ return {
 				null_ls.builtins.formatting.stylua,
 				null_ls.builtins.formatting.prettier,
 				null_ls.builtins.formatting.gdformat,
+				null_ls.builtins.formatting.markdownlint,
 
 				-- linting
 				null_ls.builtins.diagnostics.selene,
 				null_ls.builtins.diagnostics.eslint_d,
 				null_ls.builtins.diagnostics.gdlint,
+				null_ls.builtins.diagnostics.markdownlint,
 			},
 
 			on_attach = function(client, bufnr)
