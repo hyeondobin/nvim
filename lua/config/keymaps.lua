@@ -66,7 +66,7 @@ local openTerm = Terminal:new({
 		vim.cmd("startinsert!")
 	end,
 })
-local lazygit = Terminal:new({
+local git_term = Terminal:new({
 	cmd = "gbash -c tig",
 	dir = "git_dir",
 	hidden = true,
@@ -84,8 +84,8 @@ local lazygit = Terminal:new({
 		vim.cmd("startinsert!")
 	end,
 })
-local function _lazygit_toggle()
-	lazygit:toggle()
+local function git_term_toggle()
+	git_term:toggle()
 end
 
 wk.register({
@@ -162,7 +162,7 @@ wk.register({
 		name = "Terminal",
 		g = {
 			function()
-				_lazygit_toggle()
+				git_term_toggle()
 			end,
 			"Terminal: Lazygit",
 		},
