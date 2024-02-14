@@ -100,7 +100,7 @@ wk.register({
 		g = { require("telescope.builtin").live_grep, "Grep File" },
 		c = {
 			function()
-				if vim.loop.os_uname().sysname == "Windows NT" then
+				if vim.loop.os_uname().sysname == "Windows_NT" then
 					require("telescope.builtin").find_files({
 						cwd = "~/Appdata/Local/nvim",
 						prompt_title = "Neovim Config",
