@@ -22,6 +22,7 @@ return {
 				null_ls.builtins.diagnostics.gdlint,
 				null_ls.builtins.diagnostics.markdownlint,
 			},
+			debug = true,
 
 			on_attach = function(client, bufnr)
 				-- local augroup_id =

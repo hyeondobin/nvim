@@ -67,7 +67,7 @@ local openTerm = Terminal:new({
 	end,
 })
 local git_term = Terminal:new({
-	cmd = "gbash -c tig",
+	cmd = "pwsh -c 'bash -c tig'",
 	dir = "git_dir",
 	hidden = true,
 	count = 7,
