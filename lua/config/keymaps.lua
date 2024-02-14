@@ -8,12 +8,11 @@ keymap.set("n", "<C-j>", "<C-w>j", opts)
 keymap.set("n", "<C-k>", "<C-w>k", opts)
 keymap.set("n", "<C-l>", "<C-w>l", opts)
 
--- Window Management
-keymap.set("n", "<leader>sv", "<cmd>vsplit<CR>", opts)
-keymap.set("n", "<leader>sh", "<cmd>split<CR>", opts)
-
 -- Call Lazy
 keymap.set("n", "<leader>l", "<cmd>Lazy<CR>", opts)
+
+-- Cancel with <C-c>
+keymap.set("i", "<C-c>", "<Esc>", opts)
 
 -- Move line
 keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = false, desc = "Move Line Up" })
@@ -26,11 +25,11 @@ keymap.set("n", "<C-u>", "<C-u>zz", opts)
 keymap.set("n", "<C-d>", "<C-d>zz", opts)
 keymap.set("n", "<C-i>", "<C-i>zz", opts)
 keymap.set("n", "<C-o>", "<C-o>zz", opts)
-keymap.set("n", "n", "nzz", opts)
-keymap.set("n", "N", "Nzz", opts)
-keymap.set("n", "%", "%zz", opts)
-keymap.set("n", "*", "*zz", opts)
-keymap.set("n", "#", "#zz", opts)
+keymap.set("n", "n", "nzzzv", opts)
+keymap.set("n", "N", "Nzzzv", opts)
+keymap.set("n", "%", "%zzzv", opts)
+keymap.set("n", "*", "*zzzv", opts)
+keymap.set("n", "#", "#zzzv", opts)
 keymap.set("n", "gg", "ggzz", opts)
 keymap.set("n", "G", "Gzz", opts)
 keymap.set("n", "S", function()
@@ -67,7 +66,13 @@ local openTerm = Terminal:new({
 	end,
 })
 local git_term = Terminal:new({
-	cmd = "pwsh -c 'bash -c tig'",
+	cmd = function()
+		if vim.loop.os_uname().sysname == "Windows NT" then
+			return "pwsh -c 'bash -c tig'"
+		else
+			return "tig"
+		end
+	end,
 	dir = "git_dir",
 	hidden = true,
 	count = 7,
@@ -95,7 +100,14 @@ wk.register({
 		g = { require("telescope.builtin").live_grep, "Grep File" },
 		c = {
 			function()
-				require("telescope.builtin").find_files({ cwd = "~/Appdata/Local/nvim", prompt_title = "Neovim Config" })
+				if vim.loop.os_uname().sysname == "Windows NT" then
+					require("telescope.builtin").find_files({
+						cwd = "~/Appdata/Local/nvim",
+						prompt_title = "Neovim Config",
+					})
+				else
+					require("telescope.builtin").find_files({ cwd = "~/.config/nvim", prompt_title = "Neovim Config" })
+				end
 			end,
 			"Config Files",
 		},
