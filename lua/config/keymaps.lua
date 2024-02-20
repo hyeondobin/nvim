@@ -2,6 +2,7 @@ local keymap = vim.keymap
 local opts = { noremap = true, silent = false }
 local wk = require("which-key")
 
+keymap.set("n", "<Space>", "<nop>", opts)
 -- Pane Navigation
 keymap.set("n", "<C-h>", "<C-w>h", opts)
 keymap.set("n", "<C-j>", "<C-w>j", opts)
@@ -43,6 +44,8 @@ keymap.set("v", "S", function()
 	vim.api.nvim_feedkeys(keys, "n", false)
 end, { noremap = true, desc = { "Rename word under cursor" } })
 
+keymap.set("v", ">", ">gv", opts)
+keymap.set("v", "<", "<gv", opts)
 -- Utils
 vim.keymap.set("i", "<C-=>", "<C-O>VY<C-O>$=<C-R><C-=><C-R>*<CR>", { desc = "Calculate current line" })
 
