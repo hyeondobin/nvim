@@ -3,6 +3,7 @@ local opts = { noremap = true, silent = false }
 local wk = require("which-key")
 
 keymap.set("n", "<Space>", "<nop>", opts)
+
 -- Pane Navigation
 keymap.set("n", "<C-h>", "<C-w>h", opts)
 keymap.set("n", "<C-j>", "<C-w>j", opts)
@@ -46,6 +47,7 @@ end, { noremap = true, desc = { "Rename word under cursor" } })
 
 keymap.set("v", ">", ">gv", opts)
 keymap.set("v", "<", "<gv", opts)
+
 -- Utils
 vim.keymap.set("i", "<C-=>", "<C-O>VY<C-O>$=<C-R><C-=><C-R>*<CR>", { desc = "Calculate current line" })
 
@@ -57,45 +59,6 @@ keymap.set("n", "<F10>", "<CMD>DapStepOver<CR>", { desc = "DapStepOver" })
 -- leader mapping with which key
 
 -- lazygit terminal locals
-local Terminal = require("toggleterm.terminal").Terminal
-local openTerm = Terminal:new({
-	on_open = function(term)
-		vim.cmd("startinsert!")
-		vim.api.nvim_buf_set_keymap(term.bufnr, "n", "<leader>q", "<cmd>close<CR>", { noremap = true, silent = true })
-	end,
-
-	on_close = function()
-		vim.cmd("startinsert!")
-	end,
-})
-local git_term = Terminal:new({
-	cmd = function()
-		if vim.loop.os_uname().sysname == "Windows NT" then
-			return "pwsh -c 'bash -c tig'"
-		else
-			return "tig"
-		end
-	end,
-	dir = "git_dir",
-	hidden = true,
-	count = 7,
-	direction = "float",
-	float_opts = {
-		border = "double",
-	},
-	on_open = function(term)
-		vim.cmd("startinsert!")
-		vim.api.nvim_buf_set_keymap(term.bufnr, "n", "<leader>q", "<cmd>close<CR>", { noremap = true, silent = true })
-	end,
-
-	on_close = function()
-		vim.cmd("startinsert!")
-	end,
-})
-local function git_term_toggle()
-	git_term:toggle()
-end
-
 wk.register({
 	f = {
 		name = "Files",
@@ -173,21 +136,7 @@ wk.register({
 			"Scope",
 		},
 	},
-	t = {
-		name = "Terminal",
-		g = {
-			function()
-				git_term_toggle()
-			end,
-			"Terminal: Lazygit",
-		},
-		o = {
-			function()
-				openTerm:toggle()
-			end,
-			"Terminal: Open",
-		},
-	},
+	t = { name = "Terminal" },
 	n = {
 		name = "Neovide",
 		t = {
