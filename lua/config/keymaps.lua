@@ -2,7 +2,12 @@ local keymap = vim.keymap
 local opts = { noremap = true, silent = false }
 local wk = require("which-key")
 
+-- unmap space as it's leader key in normal mode
 keymap.set("n", "<Space>", "<nop>", opts)
+
+-- navigating wrapped lines
+keymap.set("n", "j", "gj", opts)
+keymap.set("n", "k", "gk", opts)
 
 -- Pane Navigation
 keymap.set("n", "<C-h>", "<C-w>h", opts)
