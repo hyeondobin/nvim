@@ -32,7 +32,11 @@ return {
 				sources = {
 					-- formatting
 					null_ls.builtins.formatting.stylua,
-					null_ls.builtins.formatting.prettier,
+					null_ls.builtins.formatting.prettierd.with({
+						env = {
+							PRETTIERD_DEFAULT_CONFIG = vim.fn.stdpath("config") .. "/linter-config/.prettierrc.json",
+						},
+					}),
 					null_ls.builtins.formatting.gdformat,
 					null_ls.builtins.formatting.markdownlint,
 
@@ -40,7 +44,7 @@ return {
 					null_ls.builtins.diagnostics.selene,
 					null_ls.builtins.diagnostics.eslint_d,
 					null_ls.builtins.diagnostics.gdlint,
-					null_ls.builtins.diagnostics.markdownlint,
+					null_ls.builtins.diagnostics.markdownlint.with({}),
 				},
 				debug = true,
 

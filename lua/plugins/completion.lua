@@ -3,16 +3,28 @@ return {
 		"L3MON4D3/LuaSnip",
 		lazy = false,
 		dependencies = {
-			"saadparwaiz1/cmp_luasnip",
-			"rafamadriz/friendly-snippets",
+			{
+				"nvim-cmp",
+				dependencies = {
+					"saadparwaiz1/cmp_luasnip",
+				},
+			},
+			{
+				"rafamadriz/friendly-snippets",
+				config = function()
+					require("luasnip.loaders.from_vscode").lazy_load()
+				end,
+			},
 		},
-	},
-	{
-		"hrsh7th/cmp-nvim-lsp",
+		opts = {
+			history = true,
+			delete_check_events = "TextChanged",
+		},
+		keys = {},
 	},
 	{
 		"hrsh7th/nvim-cmp",
-		lazy = false,
+		event = { "InsertEnter", "CmdlineEnter" },
 		dependencies = {
 			"neovim/nvim-lspconfig",
 			"hrsh7th/cmp-nvim-lsp",
@@ -29,14 +41,14 @@ return {
 			-- icon
 			"onsails/lspkind.nvim",
 		},
-		config = function()
+		opts = function()
 			local cmp = require("cmp")
-			local cmp_format = require("lsp-zero").cmp_format()
 			local luasnip = require("luasnip")
+			local lspkind = require("lspkind")
 
 			require("luasnip.loaders.from_vscode").lazy_load()
 
-			cmp.setup({
+			return {
 				preselect = "item",
 				snippet = {
 					expand = function(args)
@@ -69,8 +81,27 @@ return {
 					{ name = "buffer", keyword_length = 3 },
 				}),
 
-				formatting = cmp_format,
-			})
+				formatting = {
+					format = lspkind.cmp_format({
+						mode = "symbol_text",
+						menu = {
+							buffer = "[Buffer]",
+							nvim_lsp = "[LSP]",
+							luasnip = "[LuaSnip]",
+							nvim_lua = "[Lua]",
+							latex_symbols = "[Latex]",
+						},
+					}),
+				},
+			}
+		end,
+		config = function(_, opts)
+			for _, source in ipairs(opts.sources) do
+				source.group_index = source.group_index or 1
+			end
+
+			require("cmp").setup(opts)
+			local cmp = require("cmp")
 
 			cmp.setup.filetype("gitcommit", {
 				sources = cmp.config.sources({

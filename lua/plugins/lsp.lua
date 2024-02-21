@@ -1,79 +1,94 @@
 return {
 	{
 		"williamboman/mason.nvim",
+		dependencies = "WhoIsSethDaniel/mason-tool-installer.nvim",
 	},
-	{
-		"williamboman/mason-lspconfig.nvim",
-	},
-	{
-		"VonHeikemen/lsp-zero.nvim",
-		dependencies = {
-			"williamboman/mason.nvim",
-			"williamboman/mason-lspconfig.nvim",
-		},
-		lazy = false,
-		branch = "v3.x",
-		config = function()
-			local lsp_zero = require("lsp-zero")
-			lsp_zero.extend_lspconfig()
-
-			lsp_zero.on_attach(function(client, bufnr)
-				lsp_zero.default_keymaps({ buffer = bufnr })
-				vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, {})
-				local _notify = client.notify
-
-				client.notify = function(method, params)
-					if method == "textDocument/didClose" then
-						return
-					end
-					_notify(method, params)
-				end
-			end)
-
-			lsp_zero.set_sign_icons({
-				error = "✘",
-				warn = "▲",
-				hint = "⚑",
-				info = "»",
-			})
-			-- lsp_zero.configure("gdscript", {
-			-- 	force_setup = true,
-			-- 	single_file_support = false,
-			-- 	cmd = { "nc", "127.0.0.1", "6005" },
-			-- 	root_dir = require("lspconfig.util").root_pattern("project.godot", ".git"),
-			-- 	filetypes = { "gd", "gdscript", "gdscript3" },
-			-- 	on_attach = function()
-			-- 		print("gdscript server")
-			-- 	end,
-			-- })
-
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-			lsp_zero.setup()
-			require("lspconfig").gdscript.setup({
-				cmd = { "ncat", "localhost", os.getenv("GDScript_Port") or "6005" },
-				capabilities = capabilities,
-			})
-
-			require("mason").setup({})
-			require("mason-lspconfig").setup({
-				ensure_installed = {},
-				handlers = {
-					lsp_zero.default_setup,
-
-					lua_ls = function()
-						local lua_opts = lsp_zero.nvim_lua_ls()
-						require("lspconfig").lua_ls.setup(lua_opts)
-					end,
-				},
-			})
-		end,
-	},
+	{ "williamboman/mason-lspconfig.nvim" },
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			"williamboman/mason-lspconfig.nvim",
 			"hrsh7th/cmp-nvim-lsp",
+			"folke/neoconf.nvim",
 		},
+		config = function()
+			require("neoconf").setup({})
+
+			vim.api.nvim_create_autocmd("LspAttach", {
+				desc = "LSP actions",
+				callback = function(event)
+					local opts = { buffer = event.buf }
+
+					vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
+					vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", opts)
+					vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
+					vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
+					vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
+					vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", opts)
+					vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
+					vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
+					vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
+					vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+				end,
+			})
+
+			local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+			local default_setup = function(server)
+				require("lspconfig")[server].setup({
+					capabilities = lsp_capabilities,
+				})
+			end
+			local port = os.getenv("GDScript_Port") or "6005"
+			require("lspconfig").gdscript.setup({
+				cmd = { "ncat", "localhost", port },
+			})
+
+			require("mason").setup({
+				ui = {
+					icons = {
+						package_installed = "✓",
+						package_pending = "➜",
+						package_uninstalled = "✗",
+					},
+				},
+			})
+			local mason_tool_installer = require("mason-tool-installer")
+			mason_tool_installer.setup({
+				ensure_installed = {
+					"stylua",
+					"selene",
+					"eslint_d",
+					"prettierd",
+					"gdtoolkit",
+					"markdownlint",
+				},
+			})
+			require("mason-lspconfig").setup({
+				ensure_installed = {
+					"lua_ls",
+					"rust_analyzer",
+					"marksman",
+				},
+				automatic_installaiton = true,
+				handlers = {
+					default_setup,
+					lua_ls = function()
+						require("lspconfig").lua_ls.setup({
+							settings = {
+								Lua = {
+									workspace = {
+										checkThirdParty = false,
+									},
+									completion = {
+										callSnippet = "Replace",
+									},
+								},
+							},
+						})
+					end,
+				},
+			})
+		end,
 	},
 }

@@ -77,7 +77,7 @@ wk.register({
 			end,
 			"Config Files",
 		},
-		r = { "<cmd>Telescope oldfiles<CR>", "Find Recent" },
+		r = { require("telescope.builtin").oldfiles, "Find Recent" },
 	},
 	c = {
 		name = "config",
@@ -86,7 +86,7 @@ wk.register({
 		m = { "<CMD>Mason<CR>", "Mason" },
 		d = { "<CMD>cd %:h<CR>", "Cd to current file" },
 	},
-	["<space>"] = { require("telescope.builtin").find_files, "Find File" },
+	-- ["<space>"] = { require("telescope.builtin").find_files, "Find File" },
 	s = {
 		name = "Search",
 		d = { "<CMD>Telescope diagnostics<CR>", "Search Diagnostics" },

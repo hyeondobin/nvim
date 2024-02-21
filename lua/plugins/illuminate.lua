@@ -1,22 +1,46 @@
 return {
-    {
-        "RRethy/vim-illuminate",
-        lazy =false,
-        config = function()
-            require("illuminate").configure({
-                under_cursor = false,
-                filetypes_denylist = {
-                    "DressingSelect",
-                    "Outline",
-                    "TelescopePrompt",
-                    "alpha",
-                    "harpoon",
-                    "toggleterm",
-                    "neo-tree",
-                    "Spectre",
-                    "reason",
-                },
-            })
-        end,
-    },
+	{
+		"RRethy/vim-illuminate",
+		lazy = false,
+		config = function()
+			require("illuminate").configure({
+				delay = 200,
+				large_file_cutoff = 2000,
+				large_file_overrides = {
+					providers = { "lsp" },
+				},
+				under_cursor = false,
+				filetypes_denylist = {
+					"DressingSelect",
+					"Outline",
+					"TelescopePrompt",
+					"alpha",
+					"harpoon",
+					"toggleterm",
+					"neo-tree",
+					"Spectre",
+					"reason",
+				},
+			})
+			local function map(key, dir, buffer)
+				vim.keymap.set("n", key, function()
+					require("illuminate")["goto_" .. dir .. "_reference"](false)
+				end, { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buffer })
+			end
+			map("]]", "next")
+			map("[[", "prev")
+
+			vim.api.nvim_create_autocmd("FileType", {
+				callback = function()
+					local buffer = vim.api.nvim_get_current_buf()
+					map("]]", "next", buffer)
+					map("[[", "prev", buffer)
+				end,
+			})
+		end,
+		keys = {
+			{ "]]", desc = "Next Reference" },
+			{ "[[", desc = "Prev Reference" },
+		},
+	},
 }
