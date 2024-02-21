@@ -39,6 +39,7 @@ return {
 					}),
 					null_ls.builtins.formatting.gdformat,
 					null_ls.builtins.formatting.markdownlint,
+					null_ls.builtins.formatting.shfmt,
 
 					-- linting
 					null_ls.builtins.diagnostics.selene,

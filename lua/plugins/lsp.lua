@@ -62,6 +62,8 @@ return {
 					"prettierd",
 					"gdtoolkit",
 					"markdownlint",
+					"shfmt",
+					"shellcheck",
 				},
 			})
 			require("mason-lspconfig").setup({
@@ -69,6 +71,7 @@ return {
 					"lua_ls",
 					"rust_analyzer",
 					"marksman",
+					"bashls",
 				},
 				automatic_installaiton = true,
 				handlers = {
