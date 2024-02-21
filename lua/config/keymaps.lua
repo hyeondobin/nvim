@@ -65,54 +65,21 @@ keymap.set("n", "<F10>", "<CMD>DapStepOver<CR>", { desc = "DapStepOver" })
 
 -- lazygit terminal locals
 wk.register({
-	f = {
-		name = "Files",
-		f = { "<cmd>Telescope find_files<CR>", "Find File" },
-		g = { require("telescope.builtin").live_grep, "Grep File" },
-		c = {
-			function()
-				if vim.loop.os_uname().sysname == "Windows_NT" then
-					require("telescope.builtin").find_files({
-						cwd = "~/Appdata/Local/nvim",
-						prompt_title = "Neovim Config",
-					})
-				else
-					require("telescope.builtin").find_files({ cwd = "~/.config/nvim", prompt_title = "Neovim Config" })
-				end
-			end,
-			"Config Files",
-		},
-		r = { require("telescope.builtin").oldfiles, "Find Recent" },
-	},
 	c = {
 		name = "config",
-		e = { "<cmd>e ~/Appdata/Local/nvim/init.lua<CR>", "Config Edit" },
-		s = { "<cmd>w<CR><CMD>so<CR>", "save and Source" },
-		m = { "<CMD>Mason<CR>", "Mason" },
 		d = { "<CMD>cd %:h<CR>", "Cd to current file" },
-	},
-	-- ["<space>"] = { require("telescope.builtin").find_files, "Find File" },
-	s = {
-		name = "Search",
-		d = { "<CMD>Telescope diagnostics<CR>", "Search Diagnostics" },
-		h = { "<CMD>Telescope help_tags<CR>", "Search Help" },
-		k = { "<CMD>Telescope keymaps<CR>", "Search Keymaps" },
-		o = { "<CMD>Telescope vim_options<CR>", "Search Options" },
-		b = { "<CMD>Telescope buffers<CR>", "Search Buffers" },
-	},
-	e = {
-		function()
-			require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
-		end,
-		"Open mini.files",
+		e = { "<cmd>e ~/Appdata/Local/nvim/init.lua<CR>", "Config Edit" },
+		m = { "<CMD>Mason<CR>", "Mason" },
+		s = { "<cmd>w<CR><CMD>so<CR>", "save and Source" },
 	},
 	d = {
 		name = "Debug Adapter Protocol",
-		r = {
+		f = {
 			function()
-				require("dap").repl.open()
+				local widgets = require("dap.ui.widgets")
+				widgets.centered_float(widgets.frames)
 			end,
-			"open Repl",
+			"Float",
 		},
 		h = {
 			function()
@@ -126,12 +93,11 @@ wk.register({
 			end,
 			"Preview",
 		},
-		f = {
+		r = {
 			function()
-				local widgets = require("dap.ui.widgets")
-				widgets.centered_float(widgets.frames)
+				require("dap").repl.open()
 			end,
-			"Float",
+			"open Repl",
 		},
 		s = {
 			function()
@@ -141,15 +107,42 @@ wk.register({
 			"Scope",
 		},
 	},
-	t = { name = "Terminal" },
+	e = {
+		function()
+			require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
+		end,
+		"Open mini.files - current file",
+	},
+	f = {
+		name = "Files",
+		c = {
+			function()
+				if vim.loop.os_uname().sysname == "Windows_NT" then
+					require("telescope.builtin").find_files({
+						cwd = "~/Appdata/Local/nvim",
+						prompt_title = "Neovim Config",
+					})
+				else
+					require("telescope.builtin").find_files({
+						cwd = "~/.config/nvim",
+						prompt_title = "Neovim Config",
+					})
+				end
+			end,
+			"Config Files",
+		},
+		f = { "<cmd>Telescope find_files<CR>", "Find File" },
+		g = { require("telescope.builtin").live_grep, "Grep File" },
+		r = { require("telescope.builtin").oldfiles, "Find Recent" },
+	},
 	g = {
 		name = "Git",
 		h = {
-			name = "+Hunk",
+			name = "Hunk",
 		},
 	},
 	n = {
-		name = "Neovide",
+		name = "[N]eovide",
 		t = {
 			function()
 				local is_transparent = vim.g.neovide_transparency
@@ -159,9 +152,24 @@ wk.register({
 					vim.g.neovide_transparency = 0.5
 				end
 			end,
-			"toggle Transparency",
+			"toggle [T]ransparency",
 		},
 	},
+	p = {
+		name = "[P]review",
+		m = {
+			name = "[M]arkdown",
+		},
+	},
+	s = {
+		name = "[S]earch",
+		b = { "<CMD>Telescope buffers<CR>", "[S]earch [B]uffers" },
+		d = { "<CMD>Telescope diagnostics<CR>", "[S]earch [D]iagnostics" },
+		h = { "<CMD>Telescope help_tags<CR>", "[S]earch [H]elp" },
+		k = { "<CMD>Telescope keymaps<CR>", "[S]earch [K]eymaps" },
+		o = { "<CMD>Telescope vim_options<CR>", "[S]earch [O]ptions" },
+	},
+	t = { name = "Terminal" },
 }, { prefix = "<leader>" })
 
 -- terminal keymaps
