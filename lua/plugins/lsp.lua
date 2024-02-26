@@ -40,9 +40,13 @@ return {
 				})
 			end
 			local port = os.getenv("GDScript_Port") or "6005"
-			require("lspconfig").gdscript.setup({
-				cmd = { "ncat", "localhost", port },
-			})
+			if vim.loop.os_uname().sysname == "Windows_NT" then
+				require("lspconfig").gdscript.setup({
+					cmd = { "ncat", "localhost", port },
+				})
+			else
+				require("lspconfig").gdscript.setup({})
+			end
 
 			require("mason").setup({
 				ui = {
