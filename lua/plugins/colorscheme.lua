@@ -7,6 +7,7 @@ return {
 		config = function()
 			require("catppuccin").setup({
 				term_colors = true,
+				transparent_background = true,
 				integrations = {
 					cmp = true,
 					gitsigns = true,

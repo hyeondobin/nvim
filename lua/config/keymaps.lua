@@ -28,8 +28,8 @@ keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = false, d
 -- Center buffer while navigating
 keymap.set("n", "{", "{zz", opts)
 keymap.set("n", "}", "}zz", opts)
-keymap.set("n", "<C-u>", "<C-u>zz", opts)
-keymap.set("n", "<C-d>", "<C-d>zz", opts)
+-- keymap.set("n", "<C-u>", "<C-u>zz", opts)
+-- keymap.set("n", "<C-d>", "<C-d>zz", opts)
 keymap.set("n", "<C-i>", "<C-i>zz", opts)
 keymap.set("n", "<C-o>", "<C-o>zz", opts)
 keymap.set("n", "n", "nzzzv", opts)

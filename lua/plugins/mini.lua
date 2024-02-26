@@ -33,14 +33,17 @@ return {
 		version = false,
 		config = function()
 			require("mini.animate").setup({
+				cursor = {
+					enable = true,
+				},
 				scroll = {
-					enable = false,
+					enable = true,
 				},
 				open = {
-					enable = false,
+					enable = true,
 				},
 				close = {
-					enable = false,
+					enable = true,
 				},
 			})
 		end,
