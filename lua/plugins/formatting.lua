@@ -43,7 +43,6 @@ return {
 
 					-- linting
 					null_ls.builtins.diagnostics.selene,
-					null_ls.builtins.diagnostics.eslint_d,
 					null_ls.builtins.diagnostics.gdlint,
 					null_ls.builtins.diagnostics.markdownlint.with({}),
 				},

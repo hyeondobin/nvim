@@ -19,6 +19,7 @@ return {
 				callback = function(event)
 					local opts = { buffer = event.buf }
 
+                    -- stylua: ignore start
 					vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
 					vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", opts)
 					vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
@@ -26,9 +27,10 @@ return {
 					vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
 					vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", opts)
 					vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
-					vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-					vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
-					vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+                    vim.keymap.set("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<cr>", { buffer = event.buf, desc = "LSP Rename" })
+					vim.keymap.set({ "n", "x" }, "<leader>cf", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", {buffer = event.buf, desc = "LSP Format"})
+					vim.keymap.set( "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", { buffer = event.buf, desc = "LSP Code Action" })
+					-- stylua: ignore end
 				end,
 			})
 
@@ -62,7 +64,6 @@ return {
 				ensure_installed = {
 					"stylua",
 					"selene",
-					"eslint_d",
 					"prettierd",
 					"gdtoolkit",
 					"markdownlint",
@@ -76,6 +77,7 @@ return {
 					"rust_analyzer",
 					"marksman",
 					"bashls",
+					"eslint",
 				},
 				automatic_installaiton = true,
 				handlers = {
