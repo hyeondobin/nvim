@@ -72,6 +72,7 @@ return {
 					"rust_analyzer",
 					"marksman",
 					"bashls",
+					"powershell_es",
 				},
 				automatic_installaiton = true,
 				handlers = {
