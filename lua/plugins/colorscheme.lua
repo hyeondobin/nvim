@@ -7,10 +7,16 @@ return {
 		config = function()
 			require("catppuccin").setup({
 				term_colors = true,
+				transparent_background = true,
 				integrations = {
+					aerial = true,
+					alpha = true,
 					cmp = true,
+					dashboard = true,
+					flash = true,
 					gitsigns = true,
 					harpoon = true,
+					headlines = true,
 					illuminate = true,
 					indent_blankline = {
 						enabled = true,
@@ -18,14 +24,28 @@ return {
 						colored_indent_levels = true,
 					},
 					mason = true,
-					native_lsp = { enabled = true },
+					markdown = true,
+					mini = true,
+					native_lsp = {
+						enabled = true,
+						underlines = {
+							errors = { "undercurl" },
+							hints = { "undercurl" },
+							warnings = { "undercurl" },
+							information = { "undercurl" },
+						},
+					},
+					navic = { enabled = true, custom_bg = "lualine" },
+					neotest = true,
+					neotree = true,
 					notify = true,
 					nvimtree = true,
-					neotree = true,
+					semantic_tokens = true,
 					symbols_outline = true,
 					telescope = true,
 					treesitter = true,
 					treesitter_context = true,
+					which_key = true,
 				},
 			})
 
