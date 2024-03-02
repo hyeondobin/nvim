@@ -54,12 +54,10 @@ keymap.set("v", ">", ">gv", opts)
 keymap.set("v", "<", "<gv", opts)
 
 -- Utils
-vim.keymap.set("i", "<C-=>", "<C-O>VY<C-O>$=<C-R><C-=><C-R>*<CR>", { desc = "Calculate current line" })
+vim.keymap.set("i", "<C-=>", "<C-O>VY<C-O>$=<C-R>=<C-R>*<CR><C-O>yiw<C-O>$", { desc = "Calculate current line" })
+vim.keymap.set("i", "<C-]>", "<C-O>VY<C-O>$=<C-R>=<C-R>*<CR><C-o>yiw<C-O>$", { desc = "Calculate current line" })
 
 -- DAP
-keymap.set("n", "<F8>", "<CMD>DapToggleBreakpoint<CR>", { desc = "Toggle breakpoint" })
-keymap.set("n", "<F9>", "<CMD>DapContinue<CR>", { desc = "DapContinue" })
-keymap.set("n", "<F10>", "<CMD>DapStepOver<CR>", { desc = "DapStepOver" })
 
 -- leader mapping with which key
 
@@ -78,6 +76,8 @@ wk.register({
 	},
 	d = {
 		name = "Debug Adapter Protocol",
+		b = { "<CMD>DapToggleBreakpoint<CR>", "Toggle breakpoint" },
+		c = { "<CMD>DapContinue<CR>", "DapContinue" },
 		f = {
 			function()
 				local widgets = require("dap.ui.widgets")
@@ -91,6 +91,7 @@ wk.register({
 			end,
 			"Hover",
 		},
+		o = { "<CMD>DapStepOver<CR>", "DapStepOver" },
 		p = {
 			function()
 				require("dap.ui.widgets").preview()
