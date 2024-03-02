@@ -1,5 +1,6 @@
 return {
 	"mfussenegger/nvim-dap",
+	event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 	config = function()
 		local dap = require("dap")
 		dap.adapters.godot = {

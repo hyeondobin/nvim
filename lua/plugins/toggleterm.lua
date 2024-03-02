@@ -2,6 +2,7 @@ return {
 	{
 		"akinsho/toggleterm.nvim",
 		version = "*",
+		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 		config = function()
 			local powershell_options = {
 				shell = vim.fn.executable("pwsh") and "pwsh" or "powershell",

@@ -30,7 +30,7 @@ return {
 	},
 	{
 		"echasnovski/mini.animate",
-		version = false,
+		event = { "BufReadPost", "BufWritePost", "BufNewFile", "VeryLazy" },
 		config = function()
 			require("mini.animate").setup({
 				cursor = {

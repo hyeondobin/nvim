@@ -1,11 +1,13 @@
 return {
 	{
 		"williamboman/mason.nvim",
+		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 		dependencies = "WhoIsSethDaniel/mason-tool-installer.nvim",
 	},
 	{ "williamboman/mason-lspconfig.nvim" },
 	{
 		"neovim/nvim-lspconfig",
+		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 		dependencies = {
 			"williamboman/mason-lspconfig.nvim",
 			"hrsh7th/cmp-nvim-lsp",

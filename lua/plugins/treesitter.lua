@@ -1,22 +1,21 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
-        lazy = false,
+		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 		build = function()
 			require("nvim-treesitter.install").update({ with_sync = true })
 		end,
-		event = { "BufEnter" },
 		dependencies = {
 			-- Additional text objects for treesitter
 			"nvim-treesitter/nvim-treesitter-textobjects",
-            'ikatyang/tree-sitter-yaml',
+			"ikatyang/tree-sitter-yaml",
 		},
 		config = function()
 			require("nvim-treesitter.install").compilers = { "zig", "clang" }
 			---@diagnostic disable: missing-fields
 			require("nvim-treesitter.configs").setup({
-                auto_install = true,
-                ignore_install = { 'yaml' },
+				auto_install = true,
+				ignore_install = { "yaml" },
 				sync_install = false,
 				highlight = {
 					enable = true,
@@ -81,7 +80,7 @@ return {
 			})
 		end,
 	},
-    {
-        'ikatyang/tree-sitter-yaml',
-    },
+	{
+		"ikatyang/tree-sitter-yaml",
+	},
 }

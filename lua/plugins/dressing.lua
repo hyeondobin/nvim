@@ -1,7 +1,7 @@
 return {
 	{
 		"stevearc/dressing.nvim",
-		lazy = false,
+		event = { "BufReadPost", "BufWritePost", "BufNewFile", "VeryLazy" },
 		config = function()
 			require("dressing").setup({})
 		end,

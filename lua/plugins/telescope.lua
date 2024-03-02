@@ -1,7 +1,6 @@
 return {
 	{
 		"nvim-telescope/telescope.nvim",
-		lazy = false,
 		branch = "0.1.x",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -9,6 +8,41 @@ return {
 				"nvim-telescope/telescope-fzf-native.nvim",
 				-- enabled = false,
 				build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+			},
+		},
+		keys = {
+
+			{
+				"<leader>fc",
+				function()
+					if vim.loop.os_uname().sysname == "Windows_NT" then
+						require("telescope.builtin").find_files({
+							cwd = "~/Appdata/Local/nvim",
+							prompt_title = "Neovim Config",
+						})
+					else
+						require("telescope.builtin").find_files({
+							cwd = "~/.config/nvim",
+							prompt_title = "Neovim Config",
+						})
+					end
+				end,
+				desc = "Config Files",
+			},
+			{ "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Find File" },
+			{
+				"<leader>fg",
+				function()
+					require("telescope.builtin").live_grep()
+				end,
+				desc = "Grep File",
+			},
+			{
+				"<leader>fr",
+				function()
+					require("telescope.builtin").oldfiles()
+				end,
+				desc = "Find Recent",
 			},
 		},
 		config = function()
@@ -53,7 +87,6 @@ return {
 	},
 	{
 		"nvim-telescope/telescope-ui-select.nvim",
-		lazy = false,
 		config = function()
 			require("telescope").setup({
 				extensions = {
@@ -67,7 +100,7 @@ return {
 	},
 	{
 		"danielfalk/smart-open.nvim",
-		lazy = false,
+		event = { "BufReadPost", "BufWritePost", "BufNewFile", "VeryLazy" },
 		branch = "0.2.x",
 		keys = {
 			--          -- stylua: ignore
