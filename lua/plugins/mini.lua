@@ -29,26 +29,6 @@ return {
 		event = { "InsertEnter" },
 	},
 	{
-		"echasnovski/mini.animate",
-		event = { "BufReadPost", "BufWritePost", "BufNewFile", "VeryLazy" },
-		config = function()
-			require("mini.animate").setup({
-				cursor = {
-					enable = true,
-				},
-				scroll = {
-					enable = true,
-				},
-				open = {
-					enable = true,
-				},
-				close = {
-					enable = true,
-				},
-			})
-		end,
-	},
-	{
 		"echasnovski/mini.bufremove",
 		version = false,
 		keys = {
