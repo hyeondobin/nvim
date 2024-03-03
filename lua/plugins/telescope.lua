@@ -98,33 +98,4 @@ return {
 			require("telescope").load_extension("ui-select")
 		end,
 	},
-	{
-		"danielfalk/smart-open.nvim",
-		event = { "BufReadPost", "BufWritePost", "BufNewFile", "VeryLazy" },
-		branch = "0.2.x",
-		keys = {
-			--          -- stylua: ignore
-			-- "<leader><leader>",
-			-- function()
-			-- 	require("telescope").extensions.smart_open.smart_open()
-			-- end,
-			-- desc = "Smart Open",
-		},
-		config = function()
-			require("telescope").load_extension("smart_open")
-			vim.keymap.set(
-				"n",
-				"<leader><leader>",
-				"<cmd>Telescope smart_open<CR>",
-				{ desc = "Smart Open", noremap = true }
-			)
-		end,
-		dependencies = {
-			"kkharji/sqlite.lua",
-			{
-				"nvim-telescope/telescope-fzf-native.nvim",
-				build = "make",
-			},
-		},
-	},
 }
