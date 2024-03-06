@@ -166,6 +166,9 @@ wk.register({
 			name = "[M]arkdown",
 		},
 	},
+    r = {
+        name = "[R]estore"
+    },
 	s = {
 		name = "[S]earch",
 		b = { "<CMD>Telescope buffers<CR>", "[S]earch [B]uffers" },

@@ -8,7 +8,7 @@ return {
 			function()
 				require("persistence").load()
 			end,
-			desc = "Restore Session",
+			desc = "[R]estore [S]ession",
 		},
 	},
 }
