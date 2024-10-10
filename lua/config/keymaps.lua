@@ -59,7 +59,8 @@ vim.keymap.set("i", "<C-]>", "<C-O>VY<C-O>$=<C-R>=<C-R>*<CR><C-o>yiw<C-O>$", { d
 
 -- DAP
 
--- leader mapping with which key
+-- leader mapping
+keymap.set("n", "<leader>e", "<cmd>Oil --float<CR>", { desc = "Oil" })
 
 -- lazygit terminal locals
 wk.register({
@@ -111,12 +112,6 @@ wk.register({
 			end,
 			"Scope",
 		},
-	},
-	e = {
-		function()
-			require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
-		end,
-		"Open mini.files - current file",
 	},
 	f = {
 		name = "Files",
