@@ -62,6 +62,13 @@ vim.keymap.set("i", "<C-]>", "<C-O>VY<C-O>$=<C-R>=<C-R>*<CR><C-o>yiw<C-O>$", { d
 -- leader mapping
 keymap.set("n", "<leader>e", "<cmd>Oil --float<CR>", { desc = "Oil" })
 
+keymap.set("n", "<leader>fc", function()
+	require("telescope.builtin").find_files({
+		cwd = vim.fn.stdpath("config"),
+		promp_title = "Neovim Config",
+	})
+end, { desc = "Config Files" })
+
 -- lazygit terminal locals
 wk.register({
 	b = {
@@ -115,22 +122,6 @@ wk.register({
 	},
 	f = {
 		name = "Files",
-		c = {
-			function()
-				if vim.loop.os_uname().sysname == "Windows_NT" then
-					require("telescope.builtin").find_files({
-						cwd = "~/Appdata/Local/nvim",
-						prompt_title = "Neovim Config",
-					})
-				else
-					require("telescope.builtin").find_files({
-						cwd = "~/.config/nvim",
-						prompt_title = "Neovim Config",
-					})
-				end
-			end,
-			"Config Files",
-		},
 		f = { "<cmd>Telescope find_files<CR>", "Find File" },
 		g = { require("telescope.builtin").live_grep, "Grep File" },
 		r = { require("telescope.builtin").oldfiles, "Find Recent" },
