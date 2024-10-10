@@ -10,41 +10,7 @@ return {
 				build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
 			},
 		},
-		keys = {
-
-			{
-				"<leader>fc",
-				function()
-					if vim.loop.os_uname().sysname == "Windows_NT" then
-						require("telescope.builtin").find_files({
-							cwd = "~/Appdata/Local/nvim",
-							prompt_title = "Neovim Config",
-						})
-					else
-						require("telescope.builtin").find_files({
-							cwd = "~/.config/nvim",
-							prompt_title = "Neovim Config",
-						})
-					end
-				end,
-				desc = "Config Files",
-			},
-			{ "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Find File" },
-			{
-				"<leader>fg",
-				function()
-					require("telescope.builtin").live_grep()
-				end,
-				desc = "Grep File",
-			},
-			{
-				"<leader>fr",
-				function()
-					require("telescope.builtin").oldfiles()
-				end,
-				desc = "Find Recent",
-			},
-		},
+		cmd = "Telescope",
 		config = function()
 			local actions = require("telescope.actions")
 

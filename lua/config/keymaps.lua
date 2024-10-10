@@ -132,7 +132,5 @@ keymap.set("n", "<leader>so", "<cmd>Telescope vim_options<CR>", { desc = "Search
 
 keymap.set("n", "<leader>t", "", { desc = "Terminal" })
 
--- lazygit terminal locals
-
 -- terminal keymaps
 keymap.set({ "n", "t" }, "<Esc>", "<C-\\><C-n>", { desc = "Enter Normal mode with Esc" })
