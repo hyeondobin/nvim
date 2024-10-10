@@ -106,6 +106,7 @@ end, { desc = "Grep File" })
 map("n", "<leader>fr", function()
 	require("telescope.builtin").oldfiles()
 end, { desc = "Find Recent" })
+map("n", "<S-t>", "<cmd>Telescope buffers prompt_title=Buffers<CR>", { desc = "Buffers" })
 
 map("n", "<leader>g", "", { desc = "Git" })
 map("n", "<leader>gh", "", { desc = "Hunk" })
