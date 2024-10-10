@@ -85,20 +85,20 @@ return {
 				automatic_installaiton = true,
 				handlers = {
 					default_setup,
-					lua_ls = function()
-						require("lspconfig").lua_ls.setup({
-							settings = {
-								Lua = {
-									workspace = {
-										checkThirdParty = false,
-									},
-									completion = {
-										callSnippet = "Replace",
-									},
-								},
-							},
-						})
-					end,
+					-- lua_ls = function(_, opts)
+					-- require("lspconfig").lua_ls.setup({
+					-- 	settings = {
+					-- 		Lua = {
+					-- 			workspace = {
+					-- 				checkThirdParty = false,
+					-- 			},
+					-- 			completion = {
+					-- 				callSnippet = "Replace",
+					-- 			},
+					-- 		},
+					-- 	},
+					-- })
+					-- end,
 				},
 			})
 		end,
