@@ -60,6 +60,7 @@ vim.keymap.set("i", "<C-]>", "<C-O>VY<C-O>$=<C-R>=<C-R>*<CR><C-o>yiw<C-O>$", { d
 
 -- leader mapping
 keymap.set("n", "<leader>e", "<cmd>Oil --float<CR>", { desc = "Oil" })
+keymap.set("n", "-", "<cmd>Oil --float<CR>", { desc = "Oil" })
 
 keymap.set("n", "<leader>b", "", { desc = "Buffer" })
 
