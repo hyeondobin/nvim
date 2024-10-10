@@ -124,7 +124,8 @@ end, { desc = "Toggle transparency" })
 map("n", "<leader>p", "", { desc = "Preview" })
 map("n", "<leader>pm", "", { desc = "Markdown" })
 
-map("n", "<leader>r", "", { desc = "Restore" })
+map("n", "<leader>r", "", { desc = "Rust" })
+map("n", "<leader>rr", "<cmd>RustRun<CR>", { desc = "Rust Run" })
 
 map("n", "<leader>s", "", { desc = "Search" })
 map("n", "<leader>sb", "<cmd>Telescope buffers<CR>", { desc = "Search Buffers" })
@@ -139,3 +140,4 @@ map("n", "<leader>x", "", { desc = "Troube" })
 
 -- terminal keymaps
 map({ "n", "t" }, "<Esc>", "<C-\\><C-n>", { desc = "Enter Normal mode with Esc" })
+map({ "n", "t" }, "<Esc>", "<C-x><C-n>", { desc = "Enter Normal mode with Esc" })
