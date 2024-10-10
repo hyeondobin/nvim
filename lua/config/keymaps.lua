@@ -43,12 +43,12 @@ keymap.set("n", "S", function()
 	local cmd = ":%s/<C-r><C-w>//gI<Left><Left><Left>"
 	local keys = vim.api.nvim_replace_termcodes(cmd, true, false, true)
 	vim.api.nvim_feedkeys(keys, "n", false)
-end, { noremap = true, desc = { "Rename word under cursor" } })
+end, { noremap = true, desc = "Rename word under cursor" })
 keymap.set("v", "S", function()
 	local cmd = ":s//gI<Left><Left><Left>"
 	local keys = vim.api.nvim_replace_termcodes(cmd, true, false, true)
 	vim.api.nvim_feedkeys(keys, "n", false)
-end, { noremap = true, desc = { "Rename word under cursor" } })
+end, { noremap = true, desc = "Rename word under cursor" })
 
 keymap.set("v", ">", ">gv", opts)
 keymap.set("v", "<", "<gv", opts)
@@ -166,9 +166,9 @@ wk.register({
 			name = "[M]arkdown",
 		},
 	},
-    r = {
-        name = "[R]estore"
-    },
+	r = {
+		name = "[R]estore",
+	},
 	s = {
 		name = "[S]earch",
 		b = { "<CMD>Telescope buffers<CR>", "[S]earch [B]uffers" },
