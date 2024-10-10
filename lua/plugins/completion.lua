@@ -80,14 +80,21 @@ return {
 					["<CR>"] = cmp.mapping(function(fallback)
 						fallback()
 					end),
-					["<Tab>"] = cmp.mapping(function(fallback)
+					-- ["<Tab>"] = cmp.mapping(function(fallback)
+					-- 	if cmp.visible() then
+					-- 		cmp.confirm({ select = true })
+					-- 	elseif has_words_before() then
+					-- 		cmp.complete()
+					-- 		if #cmp.get_entries() == 1 then
+					-- 			cmp.confirm({ select = true })
+					-- 		end
+					-- 	else
+					-- 		fallback()
+					-- 	end
+					-- end),
+					["<C-y>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.confirm({ select = true })
-						elseif has_words_before() then
-							cmp.complete()
-							if #cmp.get_entries() == 1 then
-								cmp.confirm({ select = true })
-							end
 						else
 							fallback()
 						end
@@ -134,10 +141,8 @@ return {
 
 			cmp.setup.cmdline({ "/", "?" }, {
 				mapping = {
-					["<Tab>"] = cmp.mapping(function()
-						if cmp.visible() then
-							cmp.confirm({ select = true })
-						end
+					["<C-y>"] = cmp.mapping(function()
+						cmp.confirm({ select = true })
 					end, { "i", "c" }),
 					["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
 					["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
@@ -149,10 +154,8 @@ return {
 
 			cmp.setup.cmdline(":", {
 				mapping = {
-					["<Tab>"] = cmp.mapping(function()
-						if cmp.visible() then
-							cmp.confirm({ select = true })
-						end
+					["<C-y>"] = cmp.mapping(function()
+						cmp.confirm({ select = true })
 					end, { "i", "c" }),
 					["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
 					["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
