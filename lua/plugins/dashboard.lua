@@ -14,7 +14,7 @@ return {
 		logo = string.rep("\n", 8) .. logo .. "\n\n"
 
 		local configdir = function()
-			if vim.loop.os_uname().sysname == "Windows_NT" then
+			if vim.uv.os_uname().sysname == "Windows_NT" then
 				return vim.fn.expand("~") .. "/Appdata/Local/nvim"
 			else
 				return vim.fn.expand("~") .. "/.config/nvim"

@@ -13,7 +13,7 @@ return {
 				shellxquote = "",
 			}
 
-			if vim.loop.os_uname().sysname == "Windows_NT" then
+			if vim.uv.os_uname().sysname == "Windows_NT" then
 				for option, value in pairs(powershell_options) do
 					vim.opt[option] = value
 				end
@@ -40,7 +40,7 @@ return {
 			})
 			local git_term = Terminal:new({
 				cmd = function()
-					if vim.loop.os_uname().sysname == "Windows NT" then
+					if vim.uv.os_uname().sysname == "Windows NT" then
 						return "lazygit"
 					else
 						return "lazygit"

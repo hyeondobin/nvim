@@ -44,7 +44,7 @@ return {
 				})
 			end
 			local port = os.getenv("GDScript_Port") or "6005"
-			if vim.loop.os_uname().sysname == "Windows_NT" then
+			if vim.uv.os_uname().sysname == "Windows_NT" then
 				require("lspconfig").gdscript.setup({
 					cmd = { "ncat", "localhost", port },
 				})
