@@ -1,6 +1,5 @@
 local keymap = vim.keymap
 local opts = { noremap = true, silent = false }
-local wk = require("which-key")
 
 -- unmap space as it's leader key in normal mode
 keymap.set("n", "<Space>", "<nop>", opts)
@@ -62,109 +61,77 @@ vim.keymap.set("i", "<C-]>", "<C-O>VY<C-O>$=<C-R>=<C-R>*<CR><C-o>yiw<C-O>$", { d
 -- leader mapping
 keymap.set("n", "<leader>e", "<cmd>Oil --float<CR>", { desc = "Oil" })
 
+keymap.set("n", "<leader>b", "", { desc = "Buffer" })
+
+keymap.set("n", "<leader>c", "", { desc = "Config | Code" })
+keymap.set("n", "<leader>cd", "<cmd>cd %:h<CR>", { desc = "CD to current file's directory" })
+keymap.set("n", "<leader>cs", "<cmd>w<CR><CMD>so<CR>", { desc = "Save and Source current file" })
+
+keymap.set("n", "<leader>d", "", { desc = "DAP(Debug Adapter Protocol)" })
+keymap.set("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>", { desc = "Toggle breakpoint" })
+keymap.set("n", "<leader>dc", "<cmd>DapContinue<CR>", { desc = "DAP Continue" })
+keymap.set("n", "<leader>df", function()
+	local widgets = require("dap.ui.widgets")
+	widgets.centered_float(widgets.frames)
+end, { desc = "DAP Float" })
+keymap.set("n", "<leader>dh", function()
+	require("dap.ui.widgets").hover()
+end, { desc = "DAP Hover" })
+keymap.set("n", "<leader>do", "<cmd>DapStepOver<CR>", { desc = "DAP Step over" })
+keymap.set("n", "<leader>dp", function()
+	require("dap.ui.widgets").preview()
+end, { desc = "DAP Preview" })
+keymap.set("n", "<leader>dr", function()
+	require("dap").repl.open()
+end, { desc = "DAP open repl" })
+keymap.set("n", "<leader>ds", function()
+	local widgets = require("dap.ui.widgets")
+	widgets.centered_float(widgets.scopes)
+end, { desc = "DAP Scope" })
+
+keymap.set("n", "<leader>f", "", { desc = "Find" })
 keymap.set("n", "<leader>fc", function()
 	require("telescope.builtin").find_files({
 		cwd = vim.fn.stdpath("config"),
 		promp_title = "Neovim Config",
 	})
 end, { desc = "Config Files" })
+keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Find File" })
+keymap.set("n", "<leader>fg", function()
+	require("telescope.builtin").live_grep()
+end, { desc = "Grep File" })
+keymap.set("n", "<leader>fr", function()
+	require("telescope.builtin").oldfiles()
+end, { desc = "Find Recent" })
+
+keymap.set("n", "<leader>g", "", { desc = "Git" })
+keymap.set("n", "<leader>gh", "", { desc = "Hunk" })
+
+keymap.set("n", "<leader>n", "", { desc = "Neovide" })
+keymap.set("n", "<leader>nt", function()
+	local is_transparent = vim.g.neovide_transparency
+	if is_transparent ~= 1 then
+		vim.g.neovide_transparency = 1
+	else
+		vim.g.neovide_transparency = 0.5
+	end
+end, { desc = "Toggle transparency" })
+
+keymap.set("n", "<leader>p", "", { desc = "Preview" })
+keymap.set("n", "<leader>pm", "", { desc = "Markdown" })
+
+keymap.set("n", "<leader>r", "", { desc = "Restore" })
+
+keymap.set("n", "<leader>s", "", { desc = "Search" })
+keymap.set("n", "<leader>sb", "<cmd>Telescope buffers<CR>", { desc = "Search Buffers" })
+keymap.set("n", "<leader>sd", "<cmd>Telescope diagnostics<CR>", { desc = "Search diagnostics" })
+keymap.set("n", "<leader>sh", "<cmd>Telescope help_tags<CR>", { desc = "Search help" })
+keymap.set("n", "<leader>sk", "<cmd>Telescope keymaps<CR>", { desc = "Search keymaps" })
+keymap.set("n", "<leader>so", "<cmd>Telescope vim_options<CR>", { desc = "Search options" })
+
+keymap.set("n", "<leader>t", "", { desc = "Terminal" })
 
 -- lazygit terminal locals
-wk.register({
-	b = {
-		name = "Buffer",
-	},
-	c = {
-		name = "config",
-		d = { "<CMD>cd %:h<CR>", "Cd to current file" },
-		e = { "<cmd>e ~/Appdata/Local/nvim/init.lua<CR>", "Config Edit" },
-		l = { "<cmd>LspInfo<CR>", "Lsp Info" },
-		m = { "<CMD>Mason<CR>", "Mason" },
-		s = { "<cmd>w<CR><CMD>so<CR>", "save and Source" },
-	},
-	d = {
-		name = "Debug Adapter Protocol",
-		b = { "<CMD>DapToggleBreakpoint<CR>", "Toggle breakpoint" },
-		c = { "<CMD>DapContinue<CR>", "DapContinue" },
-		f = {
-			function()
-				local widgets = require("dap.ui.widgets")
-				widgets.centered_float(widgets.frames)
-			end,
-			"Float",
-		},
-		h = {
-			function()
-				require("dap.ui.widgets").hover()
-			end,
-			"Hover",
-		},
-		o = { "<CMD>DapStepOver<CR>", "DapStepOver" },
-		p = {
-			function()
-				require("dap.ui.widgets").preview()
-			end,
-			"Preview",
-		},
-		r = {
-			function()
-				require("dap").repl.open()
-			end,
-			"open Repl",
-		},
-		s = {
-			function()
-				local widgets = require("dap.ui.widgets")
-				widgets.centered_float(widgets.scopes)
-			end,
-			"Scope",
-		},
-	},
-	f = {
-		name = "Files",
-		f = { "<cmd>Telescope find_files<CR>", "Find File" },
-		g = { require("telescope.builtin").live_grep, "Grep File" },
-		r = { require("telescope.builtin").oldfiles, "Find Recent" },
-	},
-	g = {
-		name = "Git",
-		h = {
-			name = "Hunk",
-		},
-	},
-	n = {
-		name = "[N]eovide",
-		t = {
-			function()
-				local is_transparent = vim.g.neovide_transparency
-				if is_transparent ~= 1 then
-					vim.g.neovide_transparency = 1
-				else
-					vim.g.neovide_transparency = 0.5
-				end
-			end,
-			"toggle [T]ransparency",
-		},
-	},
-	p = {
-		name = "[P]review",
-		m = {
-			name = "[M]arkdown",
-		},
-	},
-	r = {
-		name = "[R]estore",
-	},
-	s = {
-		name = "[S]earch",
-		b = { "<CMD>Telescope buffers<CR>", "[S]earch [B]uffers" },
-		d = { "<CMD>Telescope diagnostics<CR>", "[S]earch [D]iagnostics" },
-		h = { "<CMD>Telescope help_tags<CR>", "[S]earch [H]elp" },
-		k = { "<CMD>Telescope keymaps<CR>", "[S]earch [K]eymaps" },
-		o = { "<CMD>Telescope vim_options<CR>", "[S]earch [O]ptions" },
-	},
-	t = { name = "Terminal" },
-}, { prefix = "<leader>" })
 
 -- terminal keymaps
 keymap.set({ "n", "t" }, "<Esc>", "<C-\\><C-n>", { desc = "Enter Normal mode with Esc" })
