@@ -39,13 +39,14 @@ return {
 				end,
 			})
 			local git_term = Terminal:new({
-				cmd = function()
-					if vim.uv.os_uname().sysname == "Windows NT" then
-						return "lazygit"
-					else
-						return "lazygit"
-					end
-				end,
+				-- cmd = function()
+				-- 	-- if vim.uv.os_uname().sysname == "Windows NT" then
+				-- 	-- 	return "lazygit"
+				-- 	-- else
+				-- 	-- 	return "lazygit"
+				-- 	-- end
+				-- end,
+				cmd = "lazygit",
 				dir = "git_dir",
 				hidden = true,
 				count = 7,

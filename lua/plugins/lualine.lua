@@ -5,6 +5,7 @@ return {
 		dependencies = {},
 		config = function()
 			local Job = require("plenary.job")
+			local gstatus
 			local function update_gstatus()
 				Job:new({
 					command = "git",
