@@ -35,8 +35,6 @@ map("n", "<C-i>", "<C-i>zz", opts)
 map("n", "<C-o>", "<C-o>zz", opts)
 map("n", "n", "nzzzv", opts)
 map("n", "N", "Nzzzv", opts)
-map("n", "gg", "ggzz", opts)
-map("n", "G", "Gzz", opts)
 map("n", "%", "%zzzv", opts)
 map("n", "*", "*zzzv", opts)
 map("n", "#", "#zzzv", opts)
@@ -58,8 +56,6 @@ map("v", "<", "<gv", opts)
 map("i", "<C-=>", "<C-O>VY<C-O>$=<C-R>=<C-R>*<CR><C-O>yiw<C-O>$", { desc = "Calculate current line" })
 map("i", "<C-]>", "<C-O>VY<C-O>$=<C-R>=<C-R>*<CR><C-o>yiw<C-O>$", { desc = "Calculate current line" })
 
--- DAP
-
 -- leader mapping
 map("n", "<leader>e", "<cmd>Oil --float<CR>", { desc = "Oil" })
 map("n", "-", "<cmd>Oil --float<CR>", { desc = "Oil" })
@@ -70,6 +66,7 @@ map("n", "<leader>c", "", { desc = "Config | Code" })
 map("n", "<leader>cd", "<cmd>cd %:h<CR>", { desc = "CD to current file's directory" })
 map("n", "<leader>cs", "<cmd>w<CR><CMD>so<CR>", { desc = "Save and Source current file" })
 
+-- DAP
 map("n", "<leader>d", "", { desc = "DAP(Debug Adapter Protocol)" })
 map("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>", { desc = "Toggle breakpoint" })
 map("n", "<leader>dc", "<cmd>DapContinue<CR>", { desc = "DAP Continue" })
@@ -140,4 +137,4 @@ map("n", "<leader>x", "", { desc = "Troube" })
 
 -- terminal keymaps
 map({ "n", "t" }, "<Esc>", "<C-\\><C-n>", { desc = "Enter Normal mode with Esc" })
-map({ "n", "t" }, "<C-x>", "<C-\\><C-n>", { desc = "Enter Normal mode with <C-x>" })
+map({ "t" }, "<C-x>", "<C-\\><C-n>", { desc = "Enter Normal mode with <C-x>" })
