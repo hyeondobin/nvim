@@ -8,6 +8,7 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+		opts = {},
 		dependencies = {
 			"williamboman/mason-lspconfig.nvim",
 			"hrsh7th/cmp-nvim-lsp",
@@ -85,6 +86,7 @@ return {
 				automatic_installaiton = true,
 				handlers = {
 					default_setup,
+					["rust_analyzer"] = function() end,
 					-- lua_ls = function(_, opts)
 					-- require("lspconfig").lua_ls.setup({
 					-- 	settings = {

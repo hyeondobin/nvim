@@ -13,6 +13,7 @@ return {
 					enabled = true,
 				},
 				char = {
+					enabled = false,
 					jump_labels = true,
 				},
 			},

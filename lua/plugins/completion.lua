@@ -95,7 +95,7 @@ return {
 					-- end),
 					["<C-y>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
-							cmp.confirm({ select = true })
+							cmp.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace })
 						else
 							fallback()
 						end

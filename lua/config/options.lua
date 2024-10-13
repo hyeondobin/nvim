@@ -22,7 +22,7 @@ opt.signcolumn = "yes"
 opt.colorcolumn = "100"
 opt.cmdheight = 1
 opt.scrolloff = 999
-opt.completeopt = "menuone,popup"
+opt.completeopt = "menu,menuone,popup,noselect"
 opt.cursorline = true
 
 -- font
