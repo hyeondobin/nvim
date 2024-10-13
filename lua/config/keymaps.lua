@@ -139,3 +139,4 @@ map("n", "<leader>x", "", { desc = "Troube" })
 
 -- terminal keymaps
 map({ "n", "t" }, "<Esc>", "<C-\\><C-n>", { desc = "Enter Normal mode with Esc" })
+map({ "n", "t" }, "<C-x>", "<C-\\><C-n>", { desc = "Enter Normal mode with <C-x>" })
