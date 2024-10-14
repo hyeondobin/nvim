@@ -3,6 +3,9 @@ local M = {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 	},
+	opts = {
+		order_buffers = "lastused",
+	},
 	keys = {
 		{
 			"<M-b>",
