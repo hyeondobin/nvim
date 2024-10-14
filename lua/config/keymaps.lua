@@ -4,7 +4,7 @@ local opts = { noremap = true, silent = false }
 -- unmap space as it's leader key in normal mode
 map("n", "<Space>", "<nop>", opts)
 
-map("n", "<M-w>", "<cmd>:x<CR>", opts)
+map("n", "<M-w>", "<cmd>:xa<CR>", opts)
 
 -- navigating wrapped lines
 map("n", "j", "gj", opts)
@@ -63,7 +63,6 @@ map("n", "-", "<cmd>Oil --float<CR>", { desc = "Oil" })
 map("n", "<leader>b", "", { desc = "Buffer" })
 
 map("n", "<leader>c", "", { desc = "Config | Code" })
-map("n", "<leader>cd", "<cmd>cd %:h<CR>", { desc = "CD to current file's directory" })
 map("n", "<leader>cs", "<cmd>w<CR><CMD>so<CR>", { desc = "Save and Source current file" })
 
 -- DAP
