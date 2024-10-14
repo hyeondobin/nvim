@@ -1,3 +1,59 @@
+local keys = {
+	{ "<C-p>", "<cmd>Telescope find_files<CR>", "Open telescope" },
+	{
+		"<leader>sg",
+		function()
+			require("telescope.builtin").live_grep()
+		end,
+		desc = "Grep files",
+	},
+	{
+		"<leader>fc",
+		function()
+			require("telescope.builtin").find_files({
+				cwd = vim.fn.stdpath("config"),
+				prompt_title = "Neovim Config",
+			})
+		end,
+		desc = "Config Files",
+	},
+	{
+		"<leader>fr",
+		function()
+			require("telescope.builtin").oldfiles()
+		end,
+		desc = "Find Recent",
+	},
+	{ "<S-t>", "<cmd>Telescope buffers prompt_title=Buffers<CR>", desc = "Open Buffers" },
+	{
+		"<leader>sd",
+		function()
+			require("telescope.builtin").diagnostics()
+		end,
+		desc = "Search diagnostics",
+	},
+	{
+		"<leader>sh",
+		function()
+			require("telescope.builtin").help_tags()
+		end,
+		desc = "Search help",
+	},
+	{
+		"<leader>sk",
+		function()
+			require("telescope.builtin").keymaps()
+		end,
+		desc = "Search Keymaps",
+	},
+	{
+		"<leader>so",
+		function()
+			require("telescope.builtin").vim_options()
+		end,
+		desc = "Search vim Options",
+	},
+}
 return {
 	{
 		"nvim-telescope/telescope.nvim",
@@ -10,6 +66,7 @@ return {
 				build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
 			},
 		},
+		keys = keys,
 		cmd = "Telescope",
 		config = function()
 			local actions = require("telescope.actions")

@@ -89,20 +89,6 @@ map("n", "<leader>ds", function()
 end, { desc = "DAP Scope" })
 
 map("n", "<leader>f", "", { desc = "Find" })
-map("n", "<leader>fc", function()
-	require("telescope.builtin").find_files({
-		cwd = vim.fn.stdpath("config"),
-		promp_title = "Neovim Config",
-	})
-end, { desc = "Config Files" })
-map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Find File" })
-map("n", "<leader>fg", function()
-	require("telescope.builtin").live_grep()
-end, { desc = "Grep File" })
-map("n", "<leader>fr", function()
-	require("telescope.builtin").oldfiles()
-end, { desc = "Find Recent" })
-map("n", "<S-t>", "<cmd>Telescope buffers prompt_title=Buffers<CR>", { desc = "Buffers" })
 
 map("n", "<leader>g", "", { desc = "Git" })
 map("n", "<leader>gh", "", { desc = "Hunk" })
@@ -124,11 +110,6 @@ map("n", "<leader>r", "", { desc = "Rust" })
 map("n", "<leader>rr", "<cmd>RustRun<CR>", { desc = "Rust Run" })
 
 map("n", "<leader>s", "", { desc = "Search" })
-map("n", "<leader>sb", "<cmd>Telescope buffers<CR>", { desc = "Search Buffers" })
-map("n", "<leader>sd", "<cmd>Telescope diagnostics<CR>", { desc = "Search diagnostics" })
-map("n", "<leader>sh", "<cmd>Telescope help_tags<CR>", { desc = "Search help" })
-map("n", "<leader>sk", "<cmd>Telescope keymaps<CR>", { desc = "Search keymaps" })
-map("n", "<leader>so", "<cmd>Telescope vim_options<CR>", { desc = "Search options" })
 
 map("n", "<leader>t", "", { desc = "Terminal" })
 
