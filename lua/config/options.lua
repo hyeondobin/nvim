@@ -52,4 +52,5 @@ opt.isfname:append("@-@")
 
 opt.updatetime = 50
 opt.conceallevel = 0
--- opt.ttimeoutlen = 200
+opt.timeoutlen = 200
+opt.ttimeoutlen = 200
