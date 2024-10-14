@@ -4,6 +4,7 @@ return {
 		event = "VeryLazy",
 		dependencies = {},
 		config = function()
+			-- source : https://www.reddit.com/r/neovim/comments/t48x5i/git_branch_aheadbehind_info_status_line_component/
 			local Job = require("plenary.job")
 			local gstatus
 			local function update_gstatus()
