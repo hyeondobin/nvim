@@ -7,8 +7,12 @@ map("n", "<Space>", "<nop>", opts)
 map("n", "<M-w>", "<cmd>:xa<CR>", opts)
 
 -- navigating wrapped lines
-map("n", "j", "gj", opts)
-map("n", "k", "gk", opts)
+-- map("n", "j", "gj", opts)
+-- map("n", "k", "gk", opts)
+
+-- center buffer while navigating wrapped lines
+map("n", "j", "gjzz", opts)
+map("n", "k", "gkzz", opts)
 
 -- Pane Navigation
 map("n", "<C-h>", "<C-w>h", opts)
@@ -38,6 +42,9 @@ map("n", "N", "Nzzzv", opts)
 map("n", "%", "%zzzv", opts)
 map("n", "*", "*zzzv", opts)
 map("n", "#", "#zzzv", opts)
+map("n", "G", "Gzzzv", opts)
+
+-- rename word under cursor
 map("n", "S", function()
 	local cmd = ":%s/<C-r><C-w>//gI<Left><Left><Left>"
 	local keys = vim.api.nvim_replace_termcodes(cmd, true, false, true)
