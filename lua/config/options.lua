@@ -24,6 +24,8 @@ opt.cmdheight = 1
 opt.scrolloff = 999
 opt.completeopt = "menu,menuone,popup,noselect"
 opt.cursorline = true
+opt.winblend = 80
+opt.pumblend = 80
 
 -- font
 -- 한글 폰트
