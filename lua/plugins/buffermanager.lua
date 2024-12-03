@@ -5,14 +5,34 @@ local M = {
 	},
 	opts = {
 		order_buffers = "lastused",
+		select_menu_item_commands = {
+			v = {
+				key = "<C-v>",
+				command = "vspilt",
+			},
+			h = {
+				key = "<C-h>",
+				command = "split",
+			},
+		},
 	},
 	keys = {
 		{
-			"<M-b>",
+			"<S-t>",
 			function()
 				require("buffer_manager.ui").toggle_quick_menu()
 			end,
 			desc = "Open Buffer Manager",
+		},
+		{
+			"<M-m>",
+			function()
+				require("buffer_manager.ui").toggle_quick_menu()
+				vim.defer_fn(function()
+					vim.fn.feedkeys("/")
+				end, 50)
+			end,
+			desc = "Open Buffer Manager and search",
 		},
 	},
 	config = function(_, opts)
@@ -26,6 +46,16 @@ local M = {
 				end, { noremap = true, buffer = true })
 			end,
 		})
+		local keys = "1234567890"
+		local opt = { noremap = true }
+		for i = 1, #keys do
+			local key = keys:sub(i, i)
+			vim.keymap.set("n", string.format("<M-%s>", key), function()
+				bmui.nav_file(i)
+			end, opt)
+		end
+
+		vim.api.nvim_set_hl(0, "BufferManagerModified", { fg = "#0000af" })
 	end,
 }
 

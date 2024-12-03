@@ -24,7 +24,6 @@ local keys = {
 		end,
 		desc = "Find Recent",
 	},
-	{ "<S-t>", "<cmd>Telescope buffers prompt_title=Buffers<CR>", desc = "Open Buffers" },
 	{
 		"<leader>sd",
 		function()
