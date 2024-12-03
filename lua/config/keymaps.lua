@@ -100,15 +100,17 @@ map("n", "<leader>f", "", { desc = "Find" })
 map("n", "<leader>g", "", { desc = "Git" })
 map("n", "<leader>gh", "", { desc = "Hunk" })
 
-map("n", "<leader>n", "", { desc = "Neovide" })
-map("n", "<leader>nt", function()
-	local is_transparent = vim.g.neovide_transparency
-	if is_transparent ~= 1 then
-		vim.g.neovide_transparency = 1
-	else
-		vim.g.neovide_transparency = 0.5
-	end
-end, { desc = "Toggle transparency" })
+if vim.g.neovide then
+	map("n", "<leader>n", "", { desc = "Neovide" })
+	map("n", "<leader>nt", function()
+		local is_transparent = vim.g.neovide_transparency
+		if is_transparent ~= 1 then
+			vim.g.neovide_transparency = 1
+		else
+			vim.g.neovide_transparency = 0.5
+		end
+	end, { desc = "Toggle transparency" })
+end
 
 map("n", "<leader>p", "", { desc = "Preview" })
 map("n", "<leader>pm", "", { desc = "Markdown" })
