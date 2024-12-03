@@ -3,6 +3,7 @@ local M = {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 	},
+	event = { "VeryLazy" },
 	opts = {
 		order_buffers = "lastused",
 		select_menu_item_commands = {

@@ -1,5 +1,8 @@
 return {
 	"notjedi/nvim-rooter.lua",
 	event = { "BufReadPost", "BufWritePost", "BufNewFile", "VeryLazy" },
-	opts = {},
+	opts = {
+		rooter_patterns = { ".git", ".hg", ".svn" },
+		cd_scope = "global",
+	},
 }
