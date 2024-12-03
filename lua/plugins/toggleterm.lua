@@ -19,7 +19,11 @@ return {
 				end
 			end
 
-			require("toggleterm").setup({})
+			require("toggleterm").setup({
+				float_opts = {
+					winblend = 80,
+				},
+			})
 
 			local Terminal = require("toggleterm.terminal").Terminal
 			local openTerm = Terminal:new({

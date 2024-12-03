@@ -91,6 +91,7 @@ return {
 
 			require("telescope").setup({
 				defaults = {
+					winblend = 80,
 					mappings = {
 						i = {
 							["<C-p>"] = actions.move_selection_previous,
