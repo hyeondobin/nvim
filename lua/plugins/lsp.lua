@@ -82,26 +82,17 @@ return {
 					"bashls",
 					"powershell_es",
 					"eslint",
+					"taplo",
 				},
 				automatic_installaiton = true,
 				handlers = {
 					default_setup,
 					["rust_analyzer"] = function() end,
-					-- lua_ls = function(_, opts)
-					-- require("lspconfig").lua_ls.setup({
-					-- 	settings = {
-					-- 		Lua = {
-					-- 			workspace = {
-					-- 				checkThirdParty = false,
-					-- 			},
-					-- 			completion = {
-					-- 				callSnippet = "Replace",
-					-- 			},
-					-- 		},
-					-- 	},
-					-- })
-					-- end,
 				},
+			})
+
+			require("lspconfig").taplo.setup({
+				root_dir = require("lspconfig.util").root_pattern("*.toml", ".git"),
 			})
 		end,
 	},
