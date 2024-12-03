@@ -5,6 +5,7 @@ local opts = { noremap = true, silent = false }
 map("n", "<Space>", "<nop>", opts)
 
 map("n", "<M-w>", "<cmd>:xa<CR>", opts)
+map("c", "<M-w>", "xa<CR>", opts)
 
 -- navigating wrapped lines
 -- map("n", "j", "gj", opts)
@@ -42,7 +43,7 @@ map("n", "N", "Nzzzv", opts)
 map("n", "%", "%zzzv", opts)
 map("n", "*", "*zzzv", opts)
 map("n", "#", "#zzzv", opts)
-map("n", "G", "Gzzzv", opts)
+map("n", "G", "Gzz", opts)
 
 -- rename word under cursor
 map("n", "S", function()

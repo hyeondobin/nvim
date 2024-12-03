@@ -15,6 +15,10 @@ local M = {
 				key = "<C-h>",
 				command = "split",
 			},
+			edit = {
+				key = "<CR>",
+				command = "",
+			},
 		},
 	},
 	keys = {
@@ -43,6 +47,9 @@ local M = {
 			pattern = "buffer_manager",
 			callback = function()
 				vim.keymap.set("n", "<C-c>", function()
+					bmui.toggle_quick_menu()
+				end, { noremap = true, buffer = true })
+				vim.keymap.set("n", "<CR>", function()
 					bmui.toggle_quick_menu()
 				end, { noremap = true, buffer = true })
 			end,
