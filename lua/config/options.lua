@@ -24,14 +24,13 @@ opt.cmdheight = 1
 opt.scrolloff = 999
 opt.completeopt = "menu,menuone,popup,noselect"
 opt.cursorline = true
-opt.winblend = 80
-opt.pumblend = 80
+opt.cursorcolumn = true
 
 -- font
 -- 한글 폰트
-opt.guifont = "D2CodingLigature Nerd Font:h10:cHANGEUL"
 -- 기본 폰트
-opt.guifont = "FiraCode Nerd Font Mono:h15:cDEFAULT"
+-- opt.guifont = "D2CodingLigature Nerd Fonth15:cHANGEUL"
+opt.guifont = "JetBrainsMono NF:h15:cDEFAULT"
 
 -- Behaviour
 opt.hidden = true

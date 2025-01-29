@@ -28,6 +28,12 @@ return {
 					mini = true,
 					native_lsp = {
 						enabled = true,
+						virtual_text = {
+							errors = {},
+							hints = {},
+							warnings = {},
+							information = {},
+						},
 						underlines = {
 							errors = { "undercurl" },
 							hints = { "undercurl" },

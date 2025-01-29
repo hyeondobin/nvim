@@ -1,8 +1,8 @@
 local map = vim.keymap.set
 local opts = { noremap = true, silent = false }
 
--- unmap space as it's leader key in normal mode
-map("n", "<Space>", "<nop>", opts)
+-- unmap space as it's leader key in normal mode -- leader key is now ","
+-- map("n", "<Space>", "<nop>", opts)
 
 map("n", "<M-w>", "<cmd>:xa<CR>", opts)
 map("c", "<M-w>", "xa<CR>", opts)
@@ -65,16 +65,9 @@ map("i", "<C-=>", "<C-O>VY<C-O>$=<C-R>=<C-R>*<CR><C-O>yiw<C-O>$", { desc = "Calc
 map("i", "<C-]>", "<C-O>VY<C-O>$=<C-R>=<C-R>*<CR><C-o>yiw<C-O>$", { desc = "Calculate current line" })
 
 -- leader mapping
-map("n", "<leader>e", "<cmd>Oil --float<CR>", { desc = "Oil" })
-map("n", "-", "<cmd>Oil --float<CR>", { desc = "Oil" })
-
-map("n", "<leader>b", "", { desc = "Buffer" })
-
-map("n", "<leader>c", "", { desc = "Config | Code" })
 map("n", "<leader>cs", "<cmd>w<CR><CMD>so<CR>", { desc = "Save and Source current file" })
 
 -- DAP
-map("n", "<leader>d", "", { desc = "DAP(Debug Adapter Protocol)" })
 map("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>", { desc = "Toggle breakpoint" })
 map("n", "<leader>dc", "<cmd>DapContinue<CR>", { desc = "DAP Continue" })
 map("n", "<leader>df", function()
@@ -96,11 +89,6 @@ map("n", "<leader>ds", function()
 	widgets.centered_float(widgets.scopes)
 end, { desc = "DAP Scope" })
 
-map("n", "<leader>f", "", { desc = "Find" })
-
-map("n", "<leader>g", "", { desc = "Git" })
-map("n", "<leader>gh", "", { desc = "Hunk" })
-
 if vim.g.neovide then
 	map("n", "<leader>n", "", { desc = "Neovide" })
 	map("n", "<leader>nt", function()
@@ -108,21 +96,23 @@ if vim.g.neovide then
 		if is_transparent ~= 1 then
 			vim.g.neovide_transparency = 1
 		else
-			vim.g.neovide_transparency = 0.5
+			vim.g.neovide_transparency = 0.7
 		end
 	end, { desc = "Toggle transparency" })
 end
-
+-- categorize
+map("n", "<leader>b", "", { desc = "Buffer" })
+map("n", "<leader>c", "", { desc = "Config | Code" })
+map("n", "<leader>d", "", { desc = "DAP(Debug Adapter Protocol)" })
+map("n", "<leader>f", "", { desc = "Find" })
+map("n", "<leader>g", "", { desc = "Git" })
+map("n", "<leader>gh", "", { desc = "Hunk" })
 map("n", "<leader>p", "", { desc = "Preview" })
 map("n", "<leader>pm", "", { desc = "Markdown" })
-
 map("n", "<leader>r", "", { desc = "Rust" })
 map("n", "<leader>rr", "<cmd>RustRun<CR>", { desc = "Rust Run" })
-
 map("n", "<leader>s", "", { desc = "Search" })
-
-map("n", "<leader>t", "", { desc = "Terminal" })
-
+map("n", "<leader>t", "", { desc = "Terminal | Treesj" })
 map("n", "<leader>x", "", { desc = "Troube" })
 
 -- terminal keymaps
