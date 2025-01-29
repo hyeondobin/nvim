@@ -1,6 +1,7 @@
 return {
 	{
 		"lukas-reineke/indent-blankline.nvim",
+		enabled = false,
 		event = "BufEnter",
 		main = "ibl",
 		opts = {},

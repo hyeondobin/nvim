@@ -1,10 +1,9 @@
 return {
 	{
-		"echasnovski/mini.pairs",
-		enabled = false,
+		"echasnovski/mini.ai",
+		enabled = true,
 		version = false,
-		event = { "InsertEnter" },
-		config = true,
+		event = { "BufReadPost" },
 	},
 	{
 		"echasnovski/mini.surround",
