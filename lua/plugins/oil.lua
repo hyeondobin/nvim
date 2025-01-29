@@ -4,9 +4,11 @@ return {
 		---@module 'oil'
 		---@type oil.SetupOpts
 		opts = {},
+		keys = {
+			{ "-", "<cmd>Oil --float<CR>", desc = "Open Oil" },
+		},
 		config = function()
 			require("oil").setup({
-
 				columns = {
 					"icon",
 					"mtime",
@@ -29,12 +31,8 @@ return {
 				win_options = {
 					signcolumn = "yes:2",
 				},
-				float = {
-					win_options = {
-						winblend = 80,
-					},
-				},
 			})
+			-- vim.keymap.set("n", "-", "<cmd>Oil --float<CR>", { desc = "Open Oil" })
 		end,
 		dependencies = {
 			{
