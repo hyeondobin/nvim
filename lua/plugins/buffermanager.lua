@@ -54,6 +54,7 @@ local M = {
 				end, { noremap = true, buffer = true })
 			end,
 		})
+		-- navigate buffers with meta + 0~9 key
 		local keys = "1234567890"
 		local opt = { noremap = true }
 		for i = 1, #keys do
