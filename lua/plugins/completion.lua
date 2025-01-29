@@ -12,6 +12,7 @@ return {
 		opts = {
 			keymap = {
 				preset = "default",
+				["<Tab>"] = {},
 				["<C-j>"] = {
 					function(cmp)
 						if not cmp.snippet_active() then
