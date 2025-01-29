@@ -111,7 +111,7 @@ map("n", "<leader>p", "", { desc = "Preview" })
 map("n", "<leader>pm", "", { desc = "Markdown" })
 map("n", "<leader>r", "", { desc = "Rust" })
 map("n", "<leader>rr", "<cmd>RustRun<CR>", { desc = "Rust Run" })
-map("n", "<leader>s", "", { desc = "Search" })
+map("n", "<leader>s", "", { desc = "Surround" })
 map("n", "<leader>t", "", { desc = "Terminal | Treesj" })
 map("n", "<leader>x", "", { desc = "Troube" })
 

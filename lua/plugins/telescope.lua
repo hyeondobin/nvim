@@ -1,7 +1,7 @@
 local keys = {
 	{ "<C-p>", "<cmd>Telescope find_files<CR>", "Open telescope" },
 	{
-		"<leader>sg",
+		"<leader>fg",
 		function()
 			require("telescope.builtin").live_grep()
 		end,
@@ -25,28 +25,28 @@ local keys = {
 		desc = "Find Recent",
 	},
 	{
-		"<leader>sd",
+		"<leader>fd",
 		function()
 			require("telescope.builtin").diagnostics()
 		end,
 		desc = "Search diagnostics",
 	},
 	{
-		"<leader>sh",
+		"<leader>fh",
 		function()
 			require("telescope.builtin").help_tags()
 		end,
 		desc = "Search help",
 	},
 	{
-		"<leader>sk",
+		"<leader>fk",
 		function()
 			require("telescope.builtin").keymaps()
 		end,
 		desc = "Search Keymaps",
 	},
 	{
-		"<leader>so",
+		"<leader>fo",
 		function()
 			require("telescope.builtin").vim_options()
 		end,
