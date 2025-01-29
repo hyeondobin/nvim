@@ -90,7 +90,7 @@ map("n", "<leader>ds", function()
 end, { desc = "DAP Scope" })
 
 if vim.g.neovide then
-	map("n", "<leader>n", "", { desc = "Neovide" })
+	map("n", "<leader>n", "", { desc = "Neovide | Notify" })
 	map("n", "<leader>nt", function()
 		local is_transparent = vim.g.neovide_transparency
 		if is_transparent ~= 1 then
@@ -114,7 +114,10 @@ map("n", "<leader>rr", "<cmd>RustRun<CR>", { desc = "Rust Run" })
 map("n", "<leader>s", "", { desc = "Surround" })
 map("n", "<leader>t", "", { desc = "Terminal | Treesj" })
 map("n", "<leader>x", "", { desc = "Troube" })
+if not vim.g.neovide then
+	map("n", "<leader>n", "", { desc = "Notify" })
+end
 
 -- terminal keymaps
-map({ "n", "t" }, "<Esc>", "<C-\\><C-n>", { desc = "Enter Normal mode with Esc" })
+map({ "t" }, "<Esc>", "<C-\\><C-n>", { desc = "Enter Normal mode with Esc" })
 map({ "t" }, "<C-x>", "<C-\\><C-n>", { desc = "Enter Normal mode with <C-x>" })
