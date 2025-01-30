@@ -6,6 +6,25 @@ return {
 		event = { "BufReadPost" },
 	},
 	{
+		"echasnovski/mini.files",
+		enabled = true,
+		version = false,
+		lazy = false,
+		opts = {
+			options = {},
+			windows = { preview = true },
+		},
+		keys = {
+			{
+				"<leader>e",
+				function()
+					require("mini.files").open()
+				end,
+				desc = "open mini.files",
+			},
+		},
+	},
+	{
 		"echasnovski/mini.surround",
 		version = false,
 		opts = {
