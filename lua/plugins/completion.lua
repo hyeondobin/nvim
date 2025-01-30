@@ -23,10 +23,11 @@ return {
 				},
 				["<C-k>"] = {
 					function(cmp)
-						if cmp.snippet_active({ direction = -1 }) then
-							return cmp.snippet_backward()
+						if not cmp.snippet_active() then
+							return cmp.show_signature()
 						end
 					end,
+					"snippet_backward",
 				},
 			},
 			appearance = {

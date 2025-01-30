@@ -6,6 +6,7 @@ local opts = { noremap = true, silent = false }
 
 map("n", "<M-w>", "<cmd>:xa<CR>", opts)
 map("c", "<M-w>", "xa<CR>", opts)
+map("n", "WQ", "ZZ", opts)
 
 -- navigating wrapped lines
 map("n", "j", "gj", opts)
