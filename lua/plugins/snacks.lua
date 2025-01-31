@@ -22,7 +22,22 @@ return {
 		},
 		---@type snacks.Config
 		opts = {
-			indent = { enabled = true },
+			---@class snacks.dashboard.Config
+			dashboard = {
+				enabled = false,
+			},
+			indent = {
+				enabled = true,
+				---@class snacks.indent.Scope.Config: snacks.scope.Config
+				scope = {
+					enabled = true,
+					priority = 200,
+					only_current = true,
+				},
+				chunk = {
+					enabled = true,
+				},
+			},
 			---@class snacks.input.Config
 			input = {
 				enabled = true,
@@ -36,6 +51,9 @@ return {
 				style = "fancy",
 			},
 			notify = { enabled = true },
+			scope = {
+				enabled = true,
+			},
 			---@type table<string, snacks.win.Config>
 			styles = {
 				notification = {

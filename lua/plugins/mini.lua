@@ -4,6 +4,7 @@ return {
 		enabled = true,
 		version = false,
 		event = { "BufReadPost" },
+		opts = {},
 	},
 	{
 		"echasnovski/mini.files",

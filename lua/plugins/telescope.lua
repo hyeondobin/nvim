@@ -1,61 +1,62 @@
 local keys = {
 	{ "<C-p>", "<cmd>Telescope find_files<CR>", "Open telescope" },
-	{
-		"<leader>fg",
-		function()
-			require("telescope.builtin").live_grep()
-		end,
-		desc = "Grep files",
-	},
-	{
-		"<leader>fc",
-		function()
-			require("telescope.builtin").find_files({
-				cwd = vim.fn.stdpath("config"),
-				prompt_title = "Neovim Config",
-			})
-		end,
-		desc = "Config Files",
-	},
-	{
-		"<leader>fr",
-		function()
-			require("telescope.builtin").oldfiles()
-		end,
-		desc = "Find Recent",
-	},
-	{
-		"<leader>fd",
-		function()
-			require("telescope.builtin").diagnostics()
-		end,
-		desc = "Search diagnostics",
-	},
-	{
-		"<leader>fh",
-		function()
-			require("telescope.builtin").help_tags()
-		end,
-		desc = "Search help",
-	},
-	{
-		"<leader>fk",
-		function()
-			require("telescope.builtin").keymaps()
-		end,
-		desc = "Search Keymaps",
-	},
-	{
-		"<leader>fo",
-		function()
-			require("telescope.builtin").vim_options()
-		end,
-		desc = "Search vim Options",
-	},
+	-- {
+	-- 	"<leader>fg",
+	-- 	function()
+	-- 		require("telescope.builtin").live_grep()
+	-- 	end,
+	-- 	desc = "Grep files",
+	-- },
+	-- {
+	-- 	"<leader>fc",
+	-- 	function()
+	-- 		require("telescope.builtin").find_files({
+	-- 			cwd = vim.fn.stdpath("config"),
+	-- 			prompt_title = "Neovim Config",
+	-- 		})
+	-- 	end,
+	-- 	desc = "Config Files",
+	-- },
+	-- {
+	-- 	"<leader>fr",
+	-- 	function()
+	-- 		require("telescope.builtin").oldfiles()
+	-- 	end,
+	-- 	desc = "Find Recent",
+	-- },
+	-- {
+	-- 	"<leader>fd",
+	-- 	function()
+	-- 		require("telescope.builtin").diagnostics()
+	-- 	end,
+	-- 	desc = "Search diagnostics",
+	-- },
+	-- {
+	-- 	"<leader>fh",
+	-- 	function()
+	-- 		require("telescope.builtin").help_tags()
+	-- 	end,
+	-- 	desc = "Search help",
+	-- },
+	-- {
+	-- 	"<leader>fk",
+	-- 	function()
+	-- 		require("telescope.builtin").keymaps()
+	-- 	end,
+	-- 	desc = "Search Keymaps",
+	-- },
+	-- {
+	-- 	"<leader>fo",
+	-- 	function()
+	-- 		require("telescope.builtin").vim_options()
+	-- 	end,
+	-- 	desc = "Search vim Options",
+	-- },
 }
 return {
 	{
 		"nvim-telescope/telescope.nvim",
+		enabled = false,
 		branch = "0.1.x",
 		dependencies = {
 			"nvim-lua/plenary.nvim",

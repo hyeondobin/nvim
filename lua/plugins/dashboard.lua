@@ -22,18 +22,71 @@ return {
 			},
 			config = {
 				header = vim.split(logo, "\n"),
-        -- stylua: ignore
-        center = {
-                    { action = "Telescope find_files",                                     desc = " Find file",       icon = " ", key = "f" },
-                    { action = "ene | startinsert",                                        desc = " New file",        icon = " ", key = "n" },
-                    { action = "Telescope oldfiles",                                       desc = " Recent files",    icon = " ", key = "r" },
-                    { action = "Telescope live_grep",                                      desc = " Find text",       icon = " ", key = "g" },
-                    -- { action = "lua require'telescope.builtin'.find_files({cwd=" .. configdir() .. ", prompt_title = 'Neovim Config'})", desc = " Config",          icon = " ", key = "c" },
-                    { action =  function() require'telescope.builtin'.find_files({cwd=vim.fn.stdpath('config'), prompt_title = "Neovim Config"})end, desc = " Config",          icon = " ", key = "c" },
-                    { action = 'lua require("persistence").load({last=true})',                        desc = " Restore Session", icon = " ", key = "s" },
-                    { action = "Lazy",                                                     desc = " Lazy",            icon = "󰒲 ", key = "l" },
-                    { action = "qa",                                                       desc = " Quit",            icon = " ", key = "q" },
-        },
+				center = {
+					{
+						action = function()
+							if vim.uv.os_uname().sysname == "Windows_NT" then
+								require("fzf-lua").files({ cwd = "C:/Users/dobin" })
+							else
+								return "FzfLua files"
+							end
+						end,
+						desc = " Find file",
+						icon = " ",
+						key = "f",
+					},
+					{
+						action = "ene | startinsert",
+						desc = " New file",
+						icon = " ",
+						key = "n",
+					},
+					{
+						action = function()
+							require("fzf-lua").oldfiles()
+						end,
+						desc = " Recent files",
+						icon = " ",
+						key = "r",
+					},
+					{
+						action = function()
+							require("fzf-lua").live_grep()
+						end,
+						desc = " Find text",
+						icon = " ",
+						key = "g",
+					},
+					-- { action = "lua require'telescope.builtin'.find_files({cwd=" .. configdir() .. ", prompt_title = 'Neovim Config'})", desc = " Config",          icon = " ", key = "c" },
+					{
+						action = function()
+							require("fzf-lua").files({
+								cwd = vim.fn.stdpath("config"),
+							})
+						end,
+						desc = " Config",
+						icon = " ",
+						key = "c",
+					},
+					{
+						action = 'lua require("persistence").load({last=true})',
+						desc = " Restore Session",
+						icon = " ",
+						key = "s",
+					},
+					{
+						action = "Lazy",
+						desc = " Lazy",
+						icon = "󰒲 ",
+						key = "l",
+					},
+					{
+						action = "qa",
+						desc = " Quit",
+						icon = " ",
+						key = "q",
+					},
+				},
 				footer = function()
 					local stats = require("lazy").stats()
 					local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)

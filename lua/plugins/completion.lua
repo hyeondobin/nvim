@@ -1,6 +1,7 @@
 return {
 	{
 		"saghen/blink.cmp",
+		enabled = true,
 		dependencies = {
 			"rafamadriz/friendly-snippets",
 			"saghen/blink.compat",
@@ -12,7 +13,7 @@ return {
 		opts = {
 			keymap = {
 				preset = "default",
-				["<Tab>"] = {},
+				["<c-Tab>"] = { "accept", "fallback" },
 				["<C-j>"] = {
 					function(cmp)
 						if not cmp.snippet_active() then
@@ -31,7 +32,7 @@ return {
 				},
 			},
 			appearance = {
-				use_nvim_cmp_as_default = true,
+				use_nvim_cmp_as_default = false,
 				nerd_font_variant = "mono",
 			},
 			completion = {
@@ -61,8 +62,11 @@ return {
 				},
 			},
 			signature = {
-				enabled = true,
+				enabled = false,
 				window = { border = "rounded" },
+			},
+			sources = {
+				default = { "lsp", "path", "snippets", "buffer" },
 			},
 		},
 		opts_extend = { "sources.default" },

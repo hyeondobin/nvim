@@ -40,9 +40,9 @@ if vim.g.neovide then
 			},
 		},
 	})
-	require("telescope").setup({
-		defaults = {
-			winblend = 80,
-		},
-	})
+	-- require("telescope").setup({
+	-- 	defaults = {
+	-- 		winblend = 80,
+	-- 	},
+	-- })
 end

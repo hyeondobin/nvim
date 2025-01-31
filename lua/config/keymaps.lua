@@ -91,7 +91,6 @@ map("n", "<leader>ds", function()
 end, { desc = "DAP Scope" })
 
 if vim.g.neovide then
-	map("n", "<leader>n", "", { desc = "Neovide | Notify" })
 	map("n", "<leader>nt", function()
 		local is_transparent = vim.g.neovide_transparency
 		if is_transparent ~= 1 then
@@ -102,22 +101,6 @@ if vim.g.neovide then
 	end, { desc = "Toggle transparency" })
 end
 -- categorize
-map("n", "<leader>b", "", { desc = "Buffer" })
-map("n", "<leader>c", "", { desc = "Config | Code" })
-map("n", "<leader>d", "", { desc = "DAP(Debug Adapter Protocol)" })
-map("n", "<leader>f", "", { desc = "Find" })
-map("n", "<leader>g", "", { desc = "Git" })
-map("n", "<leader>gh", "", { desc = "Hunk" })
-map("n", "<leader>p", "", { desc = "Preview" })
-map("n", "<leader>pm", "", { desc = "Markdown" })
-map("n", "<leader>r", "", { desc = "Rust" })
-map("n", "<leader>rr", "<cmd>RustRun<CR>", { desc = "Rust Run" })
-map("n", "<leader>s", "", { desc = "Surround" })
-map("n", "<leader>t", "", { desc = "Terminal | Treesj" })
-map("n", "<leader>x", "", { desc = "Troube" })
-if not vim.g.neovide then
-	map("n", "<leader>n", "", { desc = "Notify" })
-end
 
 -- terminal keymaps
 map({ "t" }, "<Esc>", "<C-\\><C-n>", { desc = "Enter Normal mode with Esc" })
