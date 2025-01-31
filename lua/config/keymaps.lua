@@ -4,6 +4,8 @@ local opts = { noremap = true, silent = false }
 -- unmap space as it's leader key in normal mode -- leader key is now ","
 -- map("n", "<Space>", "<nop>", opts)
 
+map("n", "<Esc>", "<nop>", opts)
+
 map("n", "<M-w>", "<cmd>:xa<CR>", opts)
 map("c", "<M-w>", "xa<CR>", opts)
 map("n", "WQ", "ZZ", opts)

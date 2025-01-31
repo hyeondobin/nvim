@@ -10,6 +10,6 @@ vim.api.nvim_create_autocmd("FileType", {
 	desc = "Oil buffer Keymap",
 	pattern = "oil",
 	callback = function()
-		vim.keymap.set("n", "<Esc>", require("oil").close, { desc = "Close oil" })
+		vim.keymap.set("n", "<Esc>", require("oil").close, { desc = "Close oil", buffer = true })
 	end,
 })
