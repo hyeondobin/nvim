@@ -1,3 +1,4 @@
+---@diagnostic disable: assign-type-mismatch
 return {
 	{
 		"folke/snacks.nvim",
@@ -5,20 +6,24 @@ return {
 		lazy = false,
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		keys = {
-			{
-				"<leader>gl",
-				function()
-					require("snacks").lazygit.open()
-				end,
-				desc = "Open lazygit",
-			},
-			{
-				"<leader>nh",
-				function()
-					Snacks.notifier.show_history()
-				end,
-				desc = "Notification history",
-			},
+			--stylua: ignore start
+			{ "<leader>gl", function() require("snacks").lazygit.open() end, desc = "Open lazygit" },
+			{ "<leader>gs", function() Snacks.picker.git_status() end, desc = "find git status" },
+			{ "<leader>nh", function() Snacks.notifier.show_history() end, desc = "Notification history" },
+            ---@diagnostic disable-next-line: missing-fields
+			{ "<leader>ffc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "find files; config" },
+			{ "<leader>fd", function() Snacks.picker.diagnostics() end, desc = "document diagnostics" },
+			{ "<leader>fs", function() Snacks.picker.lsp_symbols() end, desc = "find lsp symbols" },
+			{ "<leader>ffg", function() Snacks.picker.grep() end, desc = "find file; grep" },
+			{ "<leader>fh", function() Snacks.picker.help() end, desc = "find help" },
+			{ "<leader>fk", function() Snacks.picker.keymaps() end, desc = "find keymaps" },
+			{ "<leader>ffr", function() Snacks.picker.recent() end, desc = "find file; recent" },
+			{ "<leader>f;", function() Snacks.picker.command_history() end, desc = "find command history" },
+			{ "<leader>f:", function() Snacks.picker.commands() end, desc = "find commands" },
+			{ "<leader>fo", function() Snacks.picker.current() end, desc = "find commands" },
+			{ "<C-p>", function() Snacks.picker.smart() end, desc = "find files" },
+			{ "<m-r>", function() Snacks.picker.resume() end, desc = "Resume" },
+			--stylua: ignore end
 		},
 		---@type snacks.Config
 		opts = {
@@ -51,6 +56,7 @@ return {
 				style = "fancy",
 			},
 			notify = { enabled = true },
+			picker = { enabled = true },
 			scope = {
 				enabled = true,
 			},

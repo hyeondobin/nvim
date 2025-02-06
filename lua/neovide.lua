@@ -15,8 +15,10 @@ if vim.g.neovide then
 	vim.g.neovide_cursor_smooth_blink = true
 
 	-- color management
-	vim.g.neovide_transparency = 0.7
-	vim.g.neovide_theme = "auto"
+	vim.g.neovide_transparency = 1
+	vim.g.neovide_normal_opacity = 1
+	vim.cmd.TransparentDisable()
+	-- vim.g.neovide_theme = "auto"
 
 	-- padding
 	vim.g.neovide_padding_top = 30
@@ -31,15 +33,8 @@ if vim.g.neovide then
 	vim.g.neovide_hide_mouse_when_typing = true
 
 	local opt = vim.opt
-	opt.winblend = 80
-	opt.pumblend = 80
-	require("oil").setup({
-		float = {
-			win_options = {
-				winblend = 80,
-			},
-		},
-	})
+	opt.winblend = 0
+	opt.pumblend = 0
 	-- require("telescope").setup({
 	-- 	defaults = {
 	-- 		winblend = 80,

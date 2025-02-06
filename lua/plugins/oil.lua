@@ -36,25 +36,6 @@ return {
 		},
 		lazy = false,
 	},
-	-- {
-	-- 	"refractalize/oil-git-status.nvim",
-	-- 	enabled = false,
-	-- 	lazy = false,
-	-- 	dependencies = {
-	-- 		"stevearc/oil.nvim",
-	-- 	},
-	--
-	-- 	config = function()
-	-- 		require("oil-git-status").setup({})
-	-- 		for _, hl_group in pairs(require("oil-git-status").highlight_groups) do
-	-- 			if hl_group.index then
-	-- 				vim.api.nvim_set_hl(0, hl_group.hl_group, { fg = "#ff0000" })
-	-- 			else
-	-- 				vim.api.nvim_set_hl(0, hl_group.hl_group, { fg = "#00ff00" })
-	-- 			end
-	-- 		end
-	-- 	end,
-	-- },
 	{
 		"SirZenith/oil-vcs-status",
 		enabled = true,

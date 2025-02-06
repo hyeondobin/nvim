@@ -3,12 +3,32 @@ return {
 		"folke/trouble.nvim",
 		cmd = { "Trouble" },
 		opts = { use_diagnostic_signs = true },
+		specs = {
+			"folke/snacks.nvim",
+			opts = function(_, opts)
+				return vim.tbl_deep_extend("force", opts or {}, {
+					picker = {
+						actions = require("trouble.sources.snacks").actions,
+						win = {
+							input = {
+								keys = {
+									["<c-t>"] = {
+										"trouble_open",
+										mode = { "n", "i" },
+									},
+								},
+							},
+						},
+					},
+				})
+			end,
+		},
 		keys = {
 			{ "<leader>xx", "<cmd>Trouble diagnostics toggle<CR>", desc = "Document Diagnostics (Trouble)" },
 			{ "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Buffer Diagnostics (Trouble)" },
 			{ "<leader>xL", "<cmd>Trouble loclist<CR>", desc = "Location List (Trouble)" },
 			{ "<leader>xQ", "<cmd>Trouble quickfix<CR>", desc = "Quickfix List (Trouble)" },
-			{ "<leader>xs", "<cmd>Trouble symbols toggle focus=false" },
+			{ "<leader>xs", "<cmd>Trouble symbols toggle focus=false<CR>", desc = "symbols list(Trouble)" },
 			{
 				"[q",
 				function()

@@ -25,11 +25,7 @@ return {
 				center = {
 					{
 						action = function()
-							if vim.uv.os_uname().sysname == "Windows_NT" then
-								require("fzf-lua").files({ cwd = "C:/Users/dobin" })
-							else
-								return "FzfLua files"
-							end
+							Snacks.picker.smart()
 						end,
 						desc = " Find file",
 						icon = " ",
@@ -43,15 +39,7 @@ return {
 					},
 					{
 						action = function()
-							require("fzf-lua").oldfiles()
-						end,
-						desc = " Recent files",
-						icon = " ",
-						key = "r",
-					},
-					{
-						action = function()
-							require("fzf-lua").live_grep()
+							Snacks.picker.grep()
 						end,
 						desc = " Find text",
 						icon = " ",
@@ -60,16 +48,16 @@ return {
 					-- { action = "lua require'telescope.builtin'.find_files({cwd=" .. configdir() .. ", prompt_title = 'Neovim Config'})", desc = " Config",          icon = " ", key = "c" },
 					{
 						action = function()
-							require("fzf-lua").files({
-								cwd = vim.fn.stdpath("config"),
-							})
+							---@diagnostic disable-next-line: missing-fields, assign-type-mismatch
+							Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
 						end,
 						desc = " Config",
 						icon = " ",
 						key = "c",
 					},
 					{
-						action = 'lua require("persistence").load({last=true})',
+                        --stylua: ignore
+						action = function() require("persistence").load({last=true}) end,
 						desc = " Restore Session",
 						icon = " ",
 						key = "s",

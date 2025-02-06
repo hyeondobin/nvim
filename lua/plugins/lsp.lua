@@ -25,16 +25,16 @@ if vim.uv.os_uname().sysname == "Windows_NT" then
 						local opts = { buffer = event.buf }
 
                     -- stylua: ignore start
-					vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
-					vim.keymap.set("n", "gd", "<cmd>FzfLua lsp_definitions<cr>", opts)
-					vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
-					vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
-					vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
-					vim.keymap.set("n", "gr", "<cmd>FzfLua lsp_references<cr>", opts)
-					vim.keymap.set("n", "gh", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
-                    vim.keymap.set("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<cr>", { buffer = event.buf, desc = "LSP Rename" })
-					vim.keymap.set({ "n", "x" }, "<leader>cf", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", {buffer = event.buf, desc = "LSP Format"})
-					vim.keymap.set( "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", { buffer = event.buf, desc = "LSP Code Action" })
+					vim.keymap.set("n", "K", function () vim.lsp.buf.hover() end, opts)
+					vim.keymap.set("n", "gd", function () Snacks.picker.lsp_definitions() end, opts)
+					vim.keymap.set("n", "gD", function () vim.lsp.buf.declaration() end, opts)
+					vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts)
+					vim.keymap.set("n", "go", function() vim.lsp.buf.type_definition() end, opts)
+					vim.keymap.set("n", "gr", function () Snacks.picker.lsp_references() end, opts)
+					vim.keymap.set("n", "gh", function() vim.lsp.buf.signature_help() end, opts)
+                    vim.keymap.set("n", "<leader>cr", function() vim.lsp.buf.rename() end, { buffer = event.buf, desc = "LSP Rename" })
+					vim.keymap.set({ "n", "x" }, "<leader>cf", function() vim.lsp.buf.format({async = true}) end, {buffer = event.buf, desc = "LSP Format"})
+					vim.keymap.set( "n", "<leader>ca", function() vim.lsp.buf.code_action() end, { buffer = event.buf, desc = "LSP Code Action" })
 						-- stylua: ignore end
 					end,
 				})
@@ -86,7 +86,7 @@ if vim.uv.os_uname().sysname == "Windows_NT" then
 						"eslint",
 						"taplo",
 					},
-					automatic_installaiton = true,
+					automatic_installation = true,
 					handlers = {
 						default_setup,
 						["rust_analyzer"] = function() end,

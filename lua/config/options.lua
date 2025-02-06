@@ -1,9 +1,9 @@
 local opt = vim.opt
-
+local indent = 2
 -- Tab / Indentation
-opt.tabstop = 4
-opt.shiftwidth = 4
-opt.softtabstop = 4
+opt.tabstop = indent
+opt.shiftwidth = indent
+opt.softtabstop = indent
 opt.expandtab = true
 opt.smartindent = true
 opt.wrap = true

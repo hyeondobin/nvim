@@ -13,3 +13,9 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.keymap.set("n", "<Esc>", require("oil").close, { desc = "Close oil", buffer = true })
 	end,
 })
+
+vim.api.nvim_create_autocmd("QuickFixCmdPost", {
+	callback = function()
+		vim.cmd([[Trouble qflist open]])
+	end,
+})

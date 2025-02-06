@@ -1,13 +1,19 @@
 return {
 	{
 		"catppuccin/nvim",
+		enabled = true,
 		name = "catppuccin",
 		priority = 1000,
 		lazy = false,
 		config = function()
 			require("catppuccin").setup({
+				flavour = "mocha",
+				background = {
+					light = "latte",
+					dark = "mocha",
+				},
+				transparent_background = not vim.g.neovide,
 				term_colors = true,
-				transparent_background = true,
 				integrations = {
 					aerial = true,
 					alpha = true,
@@ -42,12 +48,10 @@ return {
 							information = { "undercurl" },
 						},
 					},
-					navic = { enabled = true, custom_bg = "lualine" },
 					neotest = true,
-					neotree = true,
 					notify = true,
-					nvimtree = true,
 					semantic_tokens = true,
+					snacks = true,
 					symbols_outline = true,
 					telescope = true,
 					treesitter = true,
@@ -58,9 +62,9 @@ return {
 
 			vim.cmd.colorscheme("catppuccin")
 
-			for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
-				vim.api.nvim_set_hl(0, group, {})
-			end
+			-- for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
+			-- 	vim.api.nvim_set_hl(0, group, {})
+			-- end
 		end,
 	},
 }

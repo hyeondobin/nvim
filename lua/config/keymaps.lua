@@ -68,7 +68,7 @@ map("i", "<C-=>", "<C-O>VY<C-O>$=<C-R>=<C-R>*<CR><C-O>yiw<C-O>$", { desc = "Calc
 map("i", "<C-]>", "<C-O>VY<C-O>$=<C-R>=<C-R>*<CR><C-o>yiw<C-O>$", { desc = "Calculate current line" })
 
 -- leader mapping
-map("n", "<leader>cs", "<cmd>w<CR><CMD>so<CR>", { desc = "Save and Source current file" })
+map("n", "<leader>fws", "<cmd>w<CR><CMD>so<CR>", { desc = "Save and Source current file" })
 
 -- DAP
 map("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>", { desc = "Toggle breakpoint" })
@@ -97,8 +97,10 @@ if vim.g.neovide then
 		local is_transparent = vim.g.neovide_transparency
 		if is_transparent ~= 1 then
 			vim.g.neovide_transparency = 1
+			vim.cmd.TransparentDisable()
 		else
 			vim.g.neovide_transparency = 0.7
+			vim.cmd.TransparentEnable()
 		end
 	end, { desc = "Toggle transparency" })
 end

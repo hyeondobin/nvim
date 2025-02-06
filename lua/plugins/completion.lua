@@ -30,6 +30,10 @@ return {
 					end,
 					"snippet_backward",
 				},
+				["<C-l>"] = {
+					"accept",
+					"fallback",
+				},
 			},
 			appearance = {
 				use_nvim_cmp_as_default = false,
