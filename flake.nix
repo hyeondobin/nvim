@@ -31,9 +31,7 @@
     inherit (nixCats) utils;
     luaPath = "${./.}";
     forEachSystem = utils.eachSystem nixpkgs.lib.platforms.all;
-    extra_pkg_config = {
-
-    dependencyOverlays = (utils.standardPluginOverlay inputs)
+    dependencyOverlays = (utils.standardPluginOverlay inputs);
     categoryDefinitions = { pkgs, settings, categories, extra, name, mkNvimPlugin, ... }@packageDef: {
       lspsAndRuntimeDeps = {
         general = with pkgs; [
@@ -87,7 +85,7 @@
     packageDefinitions = {
       defaultPackageName = {pkgs , ... }: {
         settings = {
-          wrapRc = true;
+          wrapRc = false;
           aliases = [ "nv" "vi" ];
         categories = {
           general.vimPlugins = {
@@ -101,16 +99,16 @@
           lspsAndRuntimeDeps = {
             general = true;
             neonixdev = true;
-          }
+          };
         };
       };
     };
+    };
     defaultPackageName = "nixNvim";
-
   in
   forEachSystem (system: let
     nixCatsBuilder = utils.baseBuilder luaPath {
-      inherit nixpkgs system dependencyOverlays extra_pkg_config;
+      inherit nixpkgs system dependencyOverlays;
     } categoryDefinitions packageDefinitions;
     defaultPackage = nixCatsBuilder defaultPackageName;
     # this is just for using utils such as pkgs.mkShell
@@ -141,12 +139,12 @@
     # we also export a nixos module to allow reconfiguration from configuration.nix
     nixosModule = utils.mkNixosModules {
       inherit defaultPackageName dependencyOverlays luaPath
-        categoryDefinitions packageDefinitions extra_pkg_config nixpkgs;
+        categoryDefinitions packageDefinitions nixpkgs;
     };
     # and the same for home manager
     homeModule = utils.mkHomeModules {
       inherit defaultPackageName dependencyOverlays luaPath
-        categoryDefinitions packageDefinitions extra_pkg_config nixpkgs;
+        categoryDefinitions packageDefinitions nixpkgs;
     };
   in {
 
@@ -155,7 +153,7 @@
     # this will make an overlay out of each of the packageDefinitions defined above
     # and set the default overlay to the one named here.
     overlays = utils.makeOverlays luaPath {
-      inherit nixpkgs dependencyOverlays extra_pkg_config;
+      inherit nixpkgs dependencyOverlays ;
     } categoryDefinitions packageDefinitions defaultPackageName;
 
     nixosModules.default = nixosModule;
