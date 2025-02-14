@@ -83,7 +83,7 @@
       };
     };
     packageDefinitions = {
-      defaultPackageName = {pkgs , ... }: {
+      nixNvim = {pkgs , ... }: {
         settings = {
           wrapRc = false;
           aliases = [ "nv" "vi" ];
