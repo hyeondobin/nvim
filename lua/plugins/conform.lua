@@ -9,6 +9,7 @@ return {
 					javascript = { "prettierd", "prettier" },
 					rust = { "rustfmt" },
 					markdown = { " markdownlint" },
+					nix = { "alejandra" },
 				},
 				format_on_save = {
 					timeout_ms = 3000,
