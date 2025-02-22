@@ -117,16 +117,16 @@ else
 		},
 		config = function()
 			require("neoconf").setup({})
-			local icons = require("config.icons")
-			local lsp_status = require("lsp-status")
-			lsp_status.config({
-				indicator_errors = icons.error,
-				indicator_warnings = icons.warning,
-				indicator_info = icons.info,
-				indicator_hint = icons.hint,
-				indicator_ok = icons.ok,
-			})
-			lsp_status.register_progress()
+			-- local icons = require("config.icons")
+			-- local lsp_status = require("lsp-status")
+			-- lsp_status.config({
+			-- 	indicator_errors = icons.error,
+			-- 	indicator_warnings = icons.warning,
+			-- 	indicator_info = icons.info,
+			-- 	indicator_hint = icons.hint,
+			-- 	indicator_ok = icons.ok,
+			-- })
+			-- lsp_status.register_progress()
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				desc = "LSP actions",
@@ -148,17 +148,21 @@ else
 				end,
 			})
 
-			local my_attach = function(client)
-				lsp_status.on_attach(client)
-			end
+			-- local my_attach = function(client)
+			-- 	lsp_status.on_attach(client)
+			-- end
 
 			local lsp = require("lspconfig")
+			local my_lsp_capabilities = require("blink-cmp").get_lsp_capabilities()
+
+			local hostname = vim.fn.hostname() -- get hostname
 
 			lsp.nixd.setup({
-				on_attach = function(client, bufnr)
-					my_attach(client)
-				end,
+				-- on_attach = function(client, _)
+				-- 	my_attach(client)
+				-- end,
 				cmd = { "nixd" },
+				capabilities = my_lsp_capabilities,
 				settings = {
 					nixd = {
 						nixpkgs = {
@@ -169,10 +173,12 @@ else
 						},
 						options = {
 							nixos = {
-								expr = '(builtins.getFlake "/etc/nixos").nixosConfigurations.VD-WSL.options',
+								expr = '(builtins.getflake "/etc/nixos").nixosconfigurations.'
+									.. hostname
+									.. ".options",
 							},
 							home_manager = {
-								expr = '(builtins.getFlake "/etc/nixos").homeConfigurations."hyeondobin@VD-WSL".options',
+								expr = '(builtins.getflake "/etc/nixos").homeconfigurations."hyeondobin@vd-wsl".options',
 							},
 						},
 					},
@@ -180,7 +186,7 @@ else
 			})
 			-- installed from nixpkgs
 			lsp.lua_ls.setup({
-				on_attach = my_attach,
+				-- on_attach = my_attach,
 				on_init = function(client)
 					local path = client.workspace_folders[1].name
 					if vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc") then
@@ -207,6 +213,7 @@ else
 						},
 					})
 				end,
+				-- capabilities = my_lsp_capabilities,
 				settings = {
 					Lua = {},
 				},
