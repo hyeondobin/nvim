@@ -12,7 +12,8 @@ return {
 					light = "latte",
 					dark = "mocha",
 				},
-				transparent_background = not vim.g.neovide,
+				-- transparent_background = not vim.g.neovide,
+				transparent_background = false,
 				term_colors = true,
 				integrations = {
 					aerial = true,
@@ -50,6 +51,7 @@ return {
 					},
 					neotest = true,
 					notify = true,
+					noice = true,
 					semantic_tokens = true,
 					snacks = true,
 					symbols_outline = true,

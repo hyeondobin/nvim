@@ -2,7 +2,7 @@ return {
 	{
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
-		dependencies = {},
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
 			-- source : https://www.reddit.com/r/neovim/comments/t48x5i/git_branch_aheadbehind_info_status_line_component/
 			local Job = require("plenary.job")
@@ -40,6 +40,7 @@ return {
 				},
 				sections = {
 					lualine_b = {
+						"branch",
 						function()
 							return gstatus.ahead .. " " .. gstatus.behind .. ""
 						end,
@@ -48,9 +49,27 @@ return {
 					},
 					lualine_c = {
 						{ "filename", path = 1 },
+						"selectioncount",
 					},
-					lualine_x = {
-						{ "filetype" },
+					lualine_x = { "encoding", "filetype" },
+					lualine_y = {
+						{
+							"macro",
+							fmt = function()
+								local reg = vim.fn.reg_recording()
+								if reg ~= "" then
+									return "Recording @" .. reg
+								end
+								return nil
+							end,
+							draw_emprty = false,
+						},
+						{
+							"time",
+							fmt = function()
+								return os.date("%T")
+							end,
+						},
 					},
 				},
 			})

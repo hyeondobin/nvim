@@ -13,6 +13,8 @@ return {
 				{ "<leader>c", group = "Config | Code" },
 				{ "<leader>d", group = "DAP(Debug Adapter Protocol)" },
 				{ "<leader>f", group = "Find" },
+				{ "<leader>ff", group = "Find files" },
+				{ "<leader>fw", group = "Write and ..." },
 				{ "<leader>g", group = "Git" },
 				{ "<leader>gh", group = "Hunk" },
 				{ "<leader>p", group = "Preview" },
