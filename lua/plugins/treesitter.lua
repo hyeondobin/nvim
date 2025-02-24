@@ -85,4 +85,12 @@ return {
 	{
 		"ikatyang/tree-sitter-yaml",
 	},
+	{
+		"nvim-treesitter/nvim-treesitter-context",
+		event = "VeryLazy",
+		opts = {
+			trim_scope = "inner",
+			separator = "-",
+		},
+	},
 }

@@ -1,3 +1,4 @@
+-- ref: https://cmp.saghen.dev/configuration/general.html
 return {
 	{
 		"saghen/blink.cmp",
@@ -34,6 +35,10 @@ return {
 					"accept",
 					"fallback",
 				},
+				["<C-,>"] = {
+					"show_signature",
+					"fallback",
+				},
 			},
 			appearance = {
 				use_nvim_cmp_as_default = false,
@@ -43,10 +48,10 @@ return {
 				documentation = {
 					auto_show = true,
 					auto_show_delay_ms = 50,
-					window = { border = "rounded" },
+					window = { border = vim.g.borderStyle },
 				},
 				ghost_text = {
-					enabled = false --[[ ghost is full trans so cannot recognize whether it's 
+					enabled = true --[[ ghost is full trans so cannot recognize whether it's
                     ghost so set to false]],
 				},
 				list = {
@@ -55,7 +60,7 @@ return {
 					},
 				},
 				menu = {
-					border = "rounded",
+					border = vim.g.borderStyle,
 					draw = {
 						columns = {
 							{ "kind_icon", "kind", gap = 1 },
@@ -66,13 +71,38 @@ return {
 				},
 			},
 			signature = {
-				enabled = false,
-				window = { border = "rounded" },
+				enabled = true,
+				window = { border = vim.g.borderStyle },
 			},
 			sources = {
-				default = { "lsp", "path", "snippets", "buffer" },
+				default = {
+					"lazydev",
+					"lsp",
+					"path",
+					"snippets",
+					"buffer",
+					"markdown",
+				},
+				providers = {
+					lazydev = {
+						name = "LazyDev",
+						module = "lazydev.integrations.blink",
+						score_offset = 100,
+					},
+					buffer = {
+						min_keyword_length = 3,
+					},
+					markdown = {
+						name = "RenderMarkdown",
+						module = "render-markdown.integ.blink",
+						fallbacks = { "lsp" },
+					},
+				},
+			},
+			snippets = {
+				preset = "default",
 			},
 		},
-		opts_extend = { "sources.default" },
+		-- opts_extend = { "sources.default" },
 	},
 }

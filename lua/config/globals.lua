@@ -17,3 +17,4 @@ vim.g.rustaceanvim = {
 	},
 }
 
+vim.g.borderStyle = "rounded"

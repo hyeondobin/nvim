@@ -1,5 +1,5 @@
 local opt = vim.opt
-local indent = 2
+local indent = 4
 -- Tab / Indentation
 opt.tabstop = indent
 opt.shiftwidth = indent
@@ -21,7 +21,7 @@ opt.termguicolors = true
 opt.signcolumn = "yes"
 opt.colorcolumn = "100"
 opt.cmdheight = 1
-opt.scrolloff = 999
+opt.scrolloff = 15
 opt.completeopt = "menu,menuone,popup,noselect"
 opt.cursorline = true
 opt.cursorcolumn = true
