@@ -128,16 +128,17 @@ return {
 			},
 			indent = {
 				enabled = true,
+				only_scope = true,
 				---@class snacks.indent.Scope.Config: snacks.scope.Config
-				scope = {
-					enabled = true,
-					priority = 200,
-					only_current = false,
-					underline = true,
-				},
-				chunk = {
-					enabled = false,
-				},
+			},
+			scope = {
+				enabled = true,
+				priority = 200,
+				only_current = true,
+				underline = true,
+			},
+			chunk = {
+				enabled = true,
 			},
 			---@class snacks.input.Config
 			input = {
@@ -157,9 +158,6 @@ return {
 			},
 			notify = { enabled = true },
 			picker = { enabled = true },
-			scope = {
-				enabled = true,
-			},
 			---@type table<string, snacks.win.Config>
 			styles = {
 				input = {

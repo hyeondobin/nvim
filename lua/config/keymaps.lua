@@ -9,6 +9,7 @@ map("n", "<Esc>", "<nop>", opts)
 map("n", "<M-w>", "<cmd>:xa<CR>", opts)
 map("c", "<M-w>", "xa<CR>", opts)
 map("n", "WQ", "ZZ", opts)
+map("n", "<leader>w", vim.cmd.w, opts)
 
 -- navigating wrapped lines
 map("n", "j", "gj", opts)
