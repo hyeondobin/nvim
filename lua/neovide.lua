@@ -35,9 +35,4 @@ if vim.g.neovide then
 	local opt = vim.opt
 	opt.winblend = 0
 	opt.pumblend = 0
-	-- require("telescope").setup({
-	-- 	defaults = {
-	-- 		winblend = 80,
-	-- 	},
-	-- })
 end
