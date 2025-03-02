@@ -178,7 +178,7 @@ else
 									.. ".options",
 							},
 							home_manager = {
-								expr = '(builtins.getflake "/etc/nixos").homeconfigurations."hyeondobin@vd-wsl".options',
+								expr = '(builtins.getflake "/etc/nixos").homeconfigurations.hyeondobin.options',
 							},
 						},
 					},
