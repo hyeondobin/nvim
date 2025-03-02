@@ -29,8 +29,11 @@ opt.cursorcolumn = true
 -- font
 -- 한글 폰트
 -- 기본 폰트
+-- 한글인가요
 -- opt.guifont = "D2CodingLigature Nerd Fonth15:cHANGEUL"
-opt.guifont = "JetBrainsMono NF:h15:cDEFAULT"
+
+opt.guifont = "JetBrainsMono NF:h17:cDEFAULT,D2CodingLigature Nerd Font:cHANGEUL"
+-- opt.guifont = "JetBrainsMono NF:h15:cDEFAULT"
 
 -- Behaviour
 opt.hidden = true
