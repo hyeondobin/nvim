@@ -1,4 +1,4 @@
-# My Neovim config 
+# My Neovim config
 
 My personal lsp config for neovim
 I use Windows and NixOS and this config is compatalbe with both OS
