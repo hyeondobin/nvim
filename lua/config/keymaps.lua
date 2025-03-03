@@ -61,12 +61,13 @@ map("v", "S", function()
 	vim.api.nvim_feedkeys(keys, "n", false)
 end, { noremap = true, desc = "Rename word under cursor" })
 
+-- keep in/outdenting
 map("v", ">", ">gv", opts)
 map("v", "<", "<gv", opts)
 
 -- Utils
-map("i", "<C-=>", "<C-O>VY<C-O>$=<C-R>=<C-R>*<CR><C-O>yiw<C-O>$", { desc = "Calculate current line" })
-map("i", "<C-]>", "<C-O>VY<C-O>$=<C-R>=<C-R>*<CR><C-o>yiw<C-O>$", { desc = "Calculate current line" })
+map("i", "<C-=>", "<C-O>VY<C-O>$=<C-R>=<C-R>+<CR><C-O>yiw<C-O>$", { desc = "Calculate current line" })
+map("i", "<C-]>", "<C-O>VY<C-O>$=<C-R>=<C-R>+<CR><C-o>yiw<C-O>$", { desc = "Calculate current line" })
 
 -- leader mapping
 map("n", "<leader>fws", "<cmd>w<CR><CMD>so<CR>", { desc = "Save and Source current file" })
@@ -93,20 +94,9 @@ map("n", "<leader>ds", function()
 	widgets.centered_float(widgets.scopes)
 end, { desc = "DAP Scope" })
 
-if vim.g.neovide then
-	map("n", "<leader>nt", function()
-		local is_transparent = vim.g.neovide_transparency
-		if is_transparent ~= 1 then
-			vim.g.neovide_transparency = 1
-			vim.cmd.TransparentDisable()
-		else
-			vim.g.neovide_transparency = 0.7
-			vim.cmd.TransparentEnable()
-		end
-	end, { desc = "Toggle transparency" })
-end
--- categorize
-
 -- terminal keymaps
 map({ "t" }, "<Esc>", "<C-\\><C-n>", { desc = "Enter Normal mode with Esc" })
 map({ "t" }, "<C-x>", "<C-\\><C-n>", { desc = "Enter Normal mode with <C-x>" })
+
+-- add ; to end of line in insert mode
+map("i", "<C-;>", "<C-O>$;", { desc = "Add ';' to end of line" })
