@@ -1,3 +1,4 @@
+local flavor = "macchiato"
 return {
 	{
 		"catppuccin/nvim",
@@ -6,8 +7,9 @@ return {
 		priority = 1000,
 		lazy = false,
 		config = function()
+			local color = require("catppuccin.palettes").get_palette(flavor)
 			require("catppuccin").setup({
-				flavour = "macchiato",
+				flavour = flavor,
 				background = {
 					light = "latte",
 					dark = "mocha",
@@ -59,6 +61,10 @@ return {
 					treesitter = true,
 					treesitter_context = true,
 					which_key = true,
+				},
+				custom_highlights = {
+					BlinkCmpMenuBorder = { fg = color.lavender },
+					BlinkCmpDocBorder = { fg = color.lavender },
 				},
 			})
 

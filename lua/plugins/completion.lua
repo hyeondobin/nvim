@@ -7,14 +7,31 @@ return {
 			"rafamadriz/friendly-snippets",
 			"saghen/blink.compat",
 		},
+		lazy = false,
 		event = "InsertEnter",
 		version = "*",
 		---@module 'blink.cmp'
 		---@type blink.cmp.Config
 		opts = {
+			cmdline = {
+				enabled = true,
+				completion = {
+					list = { selection = { preselect = true } },
+					menu = {
+						auto_show = true,
+						-- draw = {
+						-- 	columns = {
+						-- 		{ "kind_icon", "kind", gap = 1 },
+						-- 		{ "label", "label_description", gap = 1 },
+						-- 		{ "source_name" },
+						-- 	},
+						-- },
+					},
+				},
+			},
 			keymap = {
 				preset = "default",
-				["<c-Tab>"] = { "accept", "fallback" },
+				["<C-Tab>"] = { "accept", "fallback" },
 				["<C-j>"] = {
 					function(cmp)
 						if not cmp.snippet_active() then
@@ -47,7 +64,7 @@ return {
 			completion = {
 				documentation = {
 					auto_show = true,
-					auto_show_delay_ms = 50,
+					auto_show_delay_ms = 100,
 					window = { border = vim.g.borderStyle },
 				},
 				ghost_text = {
@@ -60,8 +77,10 @@ return {
 					},
 				},
 				menu = {
-					border = vim.g.borderStyle,
+					border = "rounded",
+					scrollbar = false,
 					draw = {
+						align_to = "cursor",
 						columns = {
 							{ "kind_icon", "kind", gap = 1 },
 							{ "label", "label_description", gap = 1 },
