@@ -15,19 +15,20 @@ if vim.g.neovide then
 	vim.g.neovide_cursor_smooth_blink = true
 
 	-- color management
-	vim.g.neovide_transparency = 1
+	vim.g.neovide_transparency = 0.7
+	vim.cmd.TransparentEnable()
 	vim.g.neovide_normal_opacity = 1
-	vim.cmd.TransparentDisable()
+	-- vim.cmd.TransparentDisable()
 	-- vim.g.neovide_theme = "auto"
 
 	-- padding
-	vim.g.neovide_padding_top = 30
+	vim.g.neovide_padding_top = 10
 	vim.g.neovide_padding_left = 10
 	vim.g.neovide_padding_right = 10
 
 	-- scroll animation
 	vim.g.neovide_scroll_animation_length = 0.3
-	vim.g.neovide_scroll_animation_far_lines = 9999
+	vim.g.neovide_scroll_animation_far_lines = 1
 
 	-- mouse
 	vim.g.neovide_hide_mouse_when_typing = true
@@ -44,6 +45,7 @@ if vim.g.neovide then
 			vim.cmd.TransparentDisable()
 		else
 			vim.g.neovide_transparency = 0.7
+			-- vim.g.winblend = 30
 			vim.cmd.TransparentEnable()
 		end
 	end, { desc = "Toggle transparency" })
