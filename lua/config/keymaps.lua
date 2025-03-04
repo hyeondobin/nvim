@@ -70,7 +70,7 @@ map("i", "<C-=>", "<C-O>VY<C-O>$=<C-R>=<C-R>+<CR><C-O>yiw<C-O>$", { desc = "Calc
 map("i", "<C-]>", "<C-O>VY<C-O>$=<C-R>=<C-R>+<CR><C-o>yiw<C-O>$", { desc = "Calculate current line" })
 
 -- leader mapping
-map("n", "<leader>fws", "<cmd>w<CR><CMD>so<CR>", { desc = "Save and Source current file" })
+map("n", "<leader>fws", "<cmd>w|so<CR>", { desc = "Save and Source current file" })
 
 -- DAP
 map("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>", { desc = "Toggle breakpoint" })
