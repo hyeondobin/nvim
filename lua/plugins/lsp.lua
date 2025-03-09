@@ -204,6 +204,8 @@ else
 			lsp.taplo.setup({
 				root_dir = require("lspconfig.util").root_pattern("*.toml", ".git"),
 			})
+			-- hyprlang lsp
+			lsp.hyprls.setup({})
 		end,
 	}
 end

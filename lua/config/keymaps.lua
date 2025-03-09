@@ -100,3 +100,6 @@ map({ "t" }, "<C-x>", "<C-\\><C-n>", { desc = "Enter Normal mode with <C-x>" })
 
 -- add ; to end of line in insert mode
 map("i", "<C-;>", "<C-O>$;", { desc = "Add ';' to end of line" })
+map("i", "<C-,>", "<C-O>$,", { desc = "Add ';' to end of line" })
+
+map("n", "<leader>ch", ":checkhealth ", { desc = "Check health of ..." })
