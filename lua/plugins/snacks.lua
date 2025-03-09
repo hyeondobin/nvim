@@ -145,7 +145,7 @@ return {
 				enabled = true,
 				icon = "",
 			},
-			lazygit = { enabled = true },
+			lazygit = { enabled = true, configure = false },
 			---@class snacks.notifier.Config
 			notifier = {
 				timeout = 7500,
