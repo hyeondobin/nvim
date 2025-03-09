@@ -65,6 +65,33 @@ return {
 				custom_highlights = {
 					BlinkCmpMenuBorder = { fg = color.lavender },
 					BlinkCmpDocBorder = { fg = color.lavender },
+					-- Oil Vcs Status Config
+					OilVcsStatusAdded = { fg = color.green },
+					OilVcsStatusUpstreamAdded = { fg = color.green },
+
+					-- Copied
+					OilVcsStatusCopied = { fg = color.pink },
+					OilVcsStatusUpstreamCopied = { fg = color.pink },
+
+					-- Untracked
+					OilVcsStatusUntracked = { fg = color.sky, background = "none" },
+					OilVcsStatusUpstreamUntracked = { fg = color.sky, background = "none" },
+
+					-- Modified
+					OilVcsStatusModified = { fg = color.yellow },
+					OilVcsStatusUpstreamModified = { fg = color.yellow },
+
+					-- Deleted
+					OilVcsStatusDeleted = { fg = color.maroon },
+					OilVcsStatusUpstreamDeleted = { fg = color.maroon },
+
+					-- Ignored
+					OilVcsStatusIgnored = { fg = color.overlay0 },
+					OilVcsStatusUpstreamIgnored = { fg = color.overlay0 },
+
+					-- Renamed
+					OilVcsStatusRenamed = { fg = color.mauve },
+					OilVcsStatusUpstreamRenamed = { fg = color.mauve },
 				},
 			})
 
