@@ -13,26 +13,26 @@ return {
 		---@module 'blink.cmp'
 		---@type blink.cmp.Config
 		opts = {
-			cmdline = {
-				enabled = true,
-				completion = {
-					list = { selection = { preselect = true } },
-					menu = {
-						auto_show = true,
-						-- draw = {
-						-- 	columns = {
-						-- 		{ "kind_icon", "kind", gap = 1 },
-						-- 		{ "label", "label_description", gap = 1 },
-						-- 		{ "source_name" },
-						-- 	},
-						-- },
-					},
-				},
-			},
+			-- cmdline = {
+			-- 	enabled = true,
+			-- 	completion = {
+			-- 		list = { selection = { preselect = true } },
+			-- 		menu = {
+			-- 			auto_show = true,
+			-- 			-- draw = {
+			-- 			-- 	columns = {
+			-- 			-- 		{ "kind_icon", "kind", gap = 1 },
+			-- 			-- 		{ "label", "label_description", gap = 1 },
+			-- 			-- 		{ "source_name" },
+			-- 			-- 	},
+			-- 			-- },
+			-- 		},
+			-- 	},
+			-- },
 			keymap = {
 				preset = "default",
 				["<C-Tab>"] = { "accept", "fallback" },
-				["<C-j>"] = {
+				["<m-l>"] = {
 					function(cmp)
 						if not cmp.snippet_active() then
 							return cmp.accept()
@@ -40,7 +40,7 @@ return {
 					end,
 					"snippet_forward",
 				},
-				["<C-k>"] = {
+				["<m-h>"] = {
 					function(cmp)
 						if not cmp.snippet_active() then
 							return cmp.show_signature()
@@ -48,10 +48,10 @@ return {
 					end,
 					"snippet_backward",
 				},
-				["<C-l>"] = {
-					"accept",
-					"fallback",
-				},
+				-- ["<C-y>"] = {
+				-- 	"accept",
+				-- 	"fallback",
+				-- },
 				["<C-,>"] = {
 					"show_signature",
 					"fallback",
@@ -62,6 +62,10 @@ return {
 				nerd_font_variant = "mono",
 			},
 			completion = {
+				trigger = {
+					show_on_trigger_character = true,
+				},
+				keyword = { range = "full" },
 				documentation = {
 					auto_show = true,
 					auto_show_delay_ms = 100,
@@ -94,6 +98,9 @@ return {
 				window = { border = vim.g.borderStyle },
 			},
 			sources = {
+				min_keyword_length = function()
+					return vim.bo.filetype == "markdown" and 2 or 0
+				end,
 				default = {
 					"lazydev",
 					"lsp",
@@ -108,9 +115,7 @@ return {
 						module = "lazydev.integrations.blink",
 						score_offset = 100,
 					},
-					buffer = {
-						min_keyword_length = 3,
-					},
+					buffer = {},
 					markdown = {
 						name = "RenderMarkdown",
 						module = "render-markdown.integ.blink",

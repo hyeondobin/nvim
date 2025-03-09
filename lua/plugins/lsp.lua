@@ -117,17 +117,6 @@ else
 		},
 		config = function()
 			require("neoconf").setup({})
-			-- local icons = require("config.icons")
-			-- local lsp_status = require("lsp-status")
-			-- lsp_status.config({
-			-- 	indicator_errors = icons.error,
-			-- 	indicator_warnings = icons.warning,
-			-- 	indicator_info = icons.info,
-			-- 	indicator_hint = icons.hint,
-			-- 	indicator_ok = icons.ok,
-			-- })
-			-- lsp_status.register_progress()
-
 			vim.api.nvim_create_autocmd("LspAttach", {
 				desc = "LSP actions",
 				callback = function(event)
@@ -148,37 +137,31 @@ else
 				end,
 			})
 
-			-- local my_attach = function(client)
-			-- 	lsp_status.on_attach(client)
-			-- end
-
 			local lsp = require("lspconfig")
 			local my_lsp_capabilities = require("blink-cmp").get_lsp_capabilities()
 
 			local hostname = vim.fn.hostname() -- get hostname
 
 			lsp.nixd.setup({
-				-- on_attach = function(client, _)
-				-- 	my_attach(client)
-				-- end,
 				cmd = { "nixd" },
 				capabilities = my_lsp_capabilities,
 				settings = {
 					nixd = {
 						nixpkgs = {
-							expr = "import <nixpkgs> { }",
+							-- expr = "import <nixpkgs> { }",
+							expr = "import (builtins.gstFlake '/etc/nixos').inputs.nixpkgs { }",
 						},
 						formatting = {
 							command = { "alejandra" },
 						},
 						options = {
 							nixos = {
-								expr = '(builtins.getflake "/etc/nixos").nixosconfigurations.'
+								expr = '(builtins.getFlake "/etc/nixos").nixosconfigurations.'
 									.. hostname
 									.. ".options",
 							},
 							home_manager = {
-								expr = '(builtins.getflake "/etc/nixos").homeconfigurations.hyeondobin.options',
+								expr = '(builtins.getFlake "/etc/nixos").homeconfigurations.hyeondobin.options',
 							},
 						},
 					},
