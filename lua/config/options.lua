@@ -32,7 +32,7 @@ opt.cursorcolumn = true
 -- 한글인가요
 -- opt.guifont = "D2CodingLigature Nerd Fonth15:cHANGEUL"
 
-opt.guifont = "JetBrainsMono NF:h17:cDEFAULT,D2CodingLigature Nerd Font:cHANGEUL"
+opt.guifont = "JetBrainsMono NF:h15:cDEFAULT,D2CodingLigature Nerd Font:cHANGEUL"
 -- opt.guifont = "JetBrainsMono NF:h15:cDEFAULT"
 
 -- Behaviour
