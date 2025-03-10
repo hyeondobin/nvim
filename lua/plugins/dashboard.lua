@@ -3,10 +3,10 @@ return {
 	event = "VimEnter",
 	opts = function()
 		local logo = [[
-            ██████╗  █████╗ ███╗   ██╗██████╗ ██╗   ██╗██╗   ██╗ █████╗ ██╗     
-            ██╔══██╗██╔══██╗████╗  ██║██╔══██╗██║   ██║╚██╗ ██╔╝██╔══██╗██║     
-            ██████╔╝███████║██╔██╗ ██║██████╔╝██║   ██║ ╚████╔╝ ███████║██║     
-            ██╔═══╝ ██╔══██║██║╚██╗██║██╔══██╗██║   ██║  ╚██╔╝  ██╔══██║██║     
+            ██████╗  █████╗ ███╗   ██╗██████╗ ██╗   ██╗██╗   ██╗ █████╗ ██╗
+            ██╔══██╗██╔══██╗████╗  ██║██╔══██╗██║   ██║╚██╗ ██╔╝██╔══██╗██║
+            ██████╔╝███████║██╔██╗ ██║██████╔╝██║   ██║ ╚████╔╝ ███████║██║
+            ██╔═══╝ ██╔══██║██║╚██╗██║██╔══██╗██║   ██║  ╚██╔╝  ██╔══██║██║
             ██║     ██║  ██║██║ ╚████║██║  ██║╚██████╔╝   ██║   ██║  ██║███████╗
             ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚══════╝
     ]]
@@ -38,14 +38,11 @@ return {
 						key = "n",
 					},
 					{
-						action = function()
-							Snacks.picker.grep()
-						end,
-						desc = " Find text",
-						icon = " ",
-						key = "g",
+						action = "Oil ~",
+						desc = " Browse Files",
+						icon = " ",
+						key = "b",
 					},
-					-- { action = "lua require'telescope.builtin'.find_files({cwd=" .. configdir() .. ", prompt_title = 'Neovim Config'})", desc = " Config",          icon = " ", key = "c" },
 					{
 						action = function()
 							---@diagnostic disable-next-line: missing-fields, assign-type-mismatch
@@ -56,8 +53,9 @@ return {
 						key = "c",
 					},
 					{
-                        --stylua: ignore
-						action = function() require("persistence").load({last=true}) end,
+						action = function()
+							require("persistence").load({ last = true })
+						end,
 						desc = " Restore Session",
 						icon = " ",
 						key = "s",
