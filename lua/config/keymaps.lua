@@ -9,7 +9,7 @@ map("n", "<Esc>", "<nop>", opts)
 map("n", "<M-w>", "<cmd>:xa<CR>", opts)
 map("c", "<M-w>", "xa<CR>", opts)
 map("n", "WQ", "ZZ", opts)
-map("n", "<leader>w", vim.cmd.w, opts)
+map("n", "<leader>w", vim.cmd.w, { desc = "Save current file" })
 
 -- navigating wrapped lines
 map("n", "j", "gj", opts)
@@ -32,8 +32,8 @@ map("n", "<leader>l", "<cmd>Lazy<CR>", opts)
 map("i", "<C-c>", "<Esc>", opts)
 
 -- Move line
-map("v", "<A-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = false, desc = "Move Line Up" })
-map("v", "<A-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = false, desc = "Move Line Down" })
+map("v", "<A-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = false, desc = "Move the Line Up" })
+map("v", "<A-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = false, desc = "Move the Line Down" })
 
 -- Center buffer while navigating
 map("n", "{", "{zz", opts)
@@ -103,3 +103,5 @@ map("i", "<C-;>", "<C-O>$;", { desc = "Add ';' to end of line" })
 map("i", "<C-,>", "<C-O>$,", { desc = "Add ';' to end of line" })
 
 map("n", "<leader>ch", ":checkhealth ", { desc = "Check health of ..." })
+
+map("v", "<leader>cs", ":sort<CR>", { desc = "Sort selected area" })
