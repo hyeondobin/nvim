@@ -8,7 +8,7 @@ I use Windows and NixOS and this config is compatalbe with both OS
 ## Required programs
 
 1. latest neovim or nightly version of neovim
-0. `fd` for Snacks picker
+1. `fd` for Snacks picker
 1. `ripgrep` for Snacks picker
 1. `npm(node)` for installing treesitter languages
 

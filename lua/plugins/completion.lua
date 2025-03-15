@@ -32,7 +32,7 @@ return {
 			keymap = {
 				preset = "default",
 				["<C-Tab>"] = { "accept", "fallback" },
-				["<m-l>"] = {
+				["<c-j>"] = {
 					function(cmp)
 						if not cmp.snippet_active() then
 							return cmp.accept()
@@ -40,7 +40,7 @@ return {
 					end,
 					"snippet_forward",
 				},
-				["<m-h>"] = {
+				["<c-k>"] = {
 					function(cmp)
 						if not cmp.snippet_active() then
 							return cmp.show_signature()

@@ -206,6 +206,9 @@ else
 			})
 			-- hyprlang lsp
 			lsp.hyprls.setup({})
+
+			-- fish lsp
+			lsp.fish_lsp.setup({})
 		end,
 	}
 end
