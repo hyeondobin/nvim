@@ -39,7 +39,10 @@ if vim.uv.os_uname().sysname == "Windows_NT" then
 					end,
 				})
 
-				local lsp_capabilities = require("blink-cmp").get_lsp_capabilities()
+                -- blink
+				-- local lsp_capabilities = require("blink-cmp").get_lsp_capabilities()
+                -- cmp
+				local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 				local default_setup = function(server)
 					require("lspconfig")[server].setup({
