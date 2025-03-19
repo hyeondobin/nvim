@@ -23,6 +23,7 @@ return {
 	},
 	{
 		"hrsh7th/nvim-cmp",
+		enabled = true,
 		event = { "InsertEnter", "CmdlineEnter" },
 		dependencies = {
 			"neovim/nvim-lspconfig",
