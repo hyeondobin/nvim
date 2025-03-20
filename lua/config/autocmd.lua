@@ -14,6 +14,14 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+	desc = "Markdown conceallevel",
+	pattern = "md",
+	callback = function()
+		vim.bo.conceallevel = 2
+	end,
+})
+
 vim.api.nvim_create_autocmd("QuickFixCmdPost", {
 	callback = function()
 		vim.cmd([[Trouble qflist open]])
