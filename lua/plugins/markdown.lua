@@ -12,6 +12,8 @@ return {
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
 		enabled = true,
+		ft = { "markdown" },
+		cmd = { "RenderMarkdown" },
 		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
 		---@module 'render-markdown'
 		---@type render.md.UserConfig
@@ -22,10 +24,25 @@ return {
 		},
 		keys = {
 			{
-				"<leader>pm",
+				"<leader>pmt",
 				function()
 					require("render-markdown").toggle()
 				end,
+				desc = "Render Markdown Toggle",
+			},
+			{
+				"<leader>pmy",
+				function()
+					require("render-markdown").enable()
+				end,
+				desc = "Render Markdown Enable",
+			},
+			{
+				"<leader>pmn",
+				function()
+					require("render-markdown").disable()
+				end,
+				desc = "Render Markdown Disable",
 			},
 		},
 	},

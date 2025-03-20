@@ -4,8 +4,8 @@ if vim.uv.os_uname().sysname == "Windows_NT" then
 	obsidianDir = "F:/Users/Dobin/Obsidian"
 	JLPath = "F:/Users/Dobin/Obsidian/JL"
 else
-	obsidianDir = vim.fn.expand("~") .. "Obsidian"
-	JLPath = vim.fn.expand("~") .. "Obsidian/JL"
+	obsidianDir = vim.fn.expand("~") .. "/Obsidian"
+	JLPath = vim.fn.expand("~") .. "/Obsidian/JL"
 end
 return {
 	"epwalsh/obsidian.nvim",
