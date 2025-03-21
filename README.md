@@ -14,9 +14,9 @@ I use Windows and NixOS and this config is compatalbe with both OS
 
 ## TODO
 
-- [ ] fix nix completion for nix files.
+- [x] fix nix completion for nix files.
 - [ ] add lsps for web development
-- [ ] try cmp-nvim for nix lsps
+- [x] try cmp-nvim for nix lsps
 
 Using neovim with Neovide for gui
 
@@ -37,6 +37,6 @@ nix lsps
 
 ## 할 일
 ---
-- [ ] nix 파일들에 사용할 nix자동완성 고치기
+- [x] nix 파일들에 사용할 nix자동완성 고치기
 - [ ] 웹 개발에 사용할 lsp 설치하기
-- [ ] nix lsp에 cmp-nvim사용해보기.
+- [x] nix lsp에 cmp-nvim사용해보기.

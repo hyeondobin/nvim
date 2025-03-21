@@ -49,8 +49,17 @@ return {
 
 			require("luasnip.loaders.from_vscode").lazy_load()
 
+			---@type cmp.ConfigSchema
 			return {
+				view = {
+					docs = { auto_open = true },
+				},
 				preselect = "item",
+				completion = {
+					completeopt = "menu,menuone,fuzzy,popup",
+					keyword_length = 0,
+					autocomplete = { "InsertEnter", "TextChanged" },
+				},
 				snippet = {
 					expand = function(args)
 						require("luasnip").lsp_expand(args.body)
@@ -93,13 +102,14 @@ return {
 							fallback()
 						end
 					end),
+					["<C-Space>"] = cmp.mapping(cmp.mapping.complete()),
 				},
 				sources = cmp.config.sources({
-					{ name = "nvim_lsp" },
-					{ name = "nvim_lsp_signature_help" },
-					{ name = "nvim_lua" },
-					{ name = "luasnip" },
 					{ name = "path" },
+					{ name = "nvim_lua" },
+					{ name = "nvim_lsp" },
+					{ name = "luasnip" },
+					{ name = "nvim_lsp_signature_help" },
 				}, {
 					{ name = "buffer", keyword_length = 3 },
 				}),

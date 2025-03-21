@@ -26,12 +26,12 @@ if vim.uv.os_uname().sysname == "Windows_NT" then
 
                     -- stylua: ignore start
 					vim.keymap.set("n", "K", function () vim.lsp.buf.hover() end, opts)
-					vim.keymap.set("n", "gd", function () Snacks.picker.lsp_definitions() end, opts)
-					vim.keymap.set("n", "gD", function () vim.lsp.buf.declaration() end, opts)
-					vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts)
-					vim.keymap.set("n", "go", function() vim.lsp.buf.type_definition() end, opts)
-					vim.keymap.set("n", "gr", function () Snacks.picker.lsp_references() end, opts)
-					vim.keymap.set("n", "gh", function() vim.lsp.buf.signature_help() end, opts)
+					vim.keymap.set("n", "gd", function () Snacks.picker.lsp_definitions() end, {buffer = event.buf, desc = "Get Definition"})
+					vim.keymap.set("n", "gD", function () vim.lsp.buf.declaration() end, {buffer = event.buf, desc = "Get Declaration"})
+					vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, {buffer = event.buf, desc = "Get implementations"})
+					vim.keymap.set("n", "go", function() vim.lsp.buf.type_definition() end, {buffer = event.buf, desc = "Get type definition"})
+					vim.keymap.set("n", "gr", function () Snacks.picker.lsp_references() end, {buffer = event.buf, desc = "Get References"})
+					vim.keymap.set("n", "gh", function() vim.lsp.buf.signature_help() end, {buffer = event.buf, desc = "Get signature Help"})
                     vim.keymap.set("n", "<leader>cr", function() vim.lsp.buf.rename() end, { buffer = event.buf, desc = "LSP Rename" })
 					vim.keymap.set({ "n", "x" }, "<leader>cf", function() vim.lsp.buf.format({async = true}) end, {buffer = event.buf, desc = "LSP Format"})
 					vim.keymap.set( "n", "<leader>ca", function() vim.lsp.buf.code_action() end, { buffer = event.buf, desc = "LSP Code Action" })
@@ -130,22 +130,22 @@ else
 					end, opts)
 					vim.keymap.set("n", "gd", function()
 						Snacks.picker.lsp_definitions()
-					end, opts)
+					end, { buffer = event.buf, desc = "Get Definition" })
 					vim.keymap.set("n", "gD", function()
 						vim.lsp.buf.declaration()
-					end, opts)
+					end, { buffer = event.buf, desc = "Get Declaration" })
 					vim.keymap.set("n", "gi", function()
 						vim.lsp.buf.implementation()
-					end, opts)
+					end, { buffer = event.buf, desc = "Get implementations" })
 					vim.keymap.set("n", "go", function()
 						vim.lsp.buf.type_definition()
-					end, opts)
+					end, { buffer = event.buf, desc = "Get type definition" })
 					vim.keymap.set("n", "gr", function()
 						Snacks.picker.lsp_references()
-					end, opts)
+					end, { buffer = event.buf, desc = "Get References" })
 					vim.keymap.set("n", "gh", function()
 						vim.lsp.buf.signature_help()
-					end, opts)
+					end, { buffer = event.buf, desc = "Get signature Help" })
 					vim.keymap.set("n", "<leader>cr", function()
 						vim.lsp.buf.rename()
 					end, { buffer = event.buf, desc = "LSP Rename" })
@@ -163,29 +163,62 @@ else
 			-- local lsp_capabilities = require("blink-cmp").get_lsp_capabilities()
 			-- cmp
 			local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+			-- lsp_capabilities.textDocument.foldingRange = {
+			-- 	dynamicRegistration = false,
+			-- 	lineFoldingOnly = true,
+			-- }
+
+			vim.diagnostic.config({
+				virtual_lines = true,
+				signs = true,
+				underline = true,
+				update_in_insert = true,
+				severity_sort = false,
+			})
 
 			local hostname = vim.fn.hostname() -- get hostname
-
+			local on_attach = function(bufnr)
+				vim.api.nvim_create_autocmd("CursorHold", {
+					buffer = bufnr,
+					callback = function()
+						local opts = {
+							focusable = false,
+							close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+							border = "rounded",
+							source = "always",
+							prefix = " ",
+							scope = "line",
+						}
+						vim.diagnostic.open_float(nil, opts)
+					end,
+				})
+			end
 			lsp.nixd.setup({
 				cmd = { "nixd" },
+				-- on_attach = on_attach(),
 				capabilities = lsp_capabilities,
 				settings = {
 					nixd = {
 						nixpkgs = {
-							-- expr = "import <nixpkgs> { }",
-							expr = "import (builtins.gstFlake '/etc/nixos').inputs.nixpkgs { }",
+							expr = "import <nixpkgs> { }",
+							-- expr = "import (builtins.getFlake '/etc/nixos').inputs.nixpkgs { }",
 						},
 						formatting = {
 							command = { "alejandra" },
 						},
 						options = {
 							nixos = {
-								expr = '(builtins.getFlake "/etc/nixos").nixosconfigurations.'
+								expr = '(builtins.getFlake "/etc/nixos").nixosConfigurations.'
 									.. hostname
 									.. ".options",
 							},
 							home_manager = {
-								expr = '(builtins.getFlake "/etc/nixos").homeconfigurations.hyeondobin.options',
+								expr = '(builtins.getFlake "/etc/nixos").homeConfigurations.hyeondobin.options',
+							},
+						},
+						diagnostics = {
+							suppress = {
+								"sema-extra-with",
 							},
 						},
 					},
