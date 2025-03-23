@@ -30,7 +30,7 @@ local M = {
 			desc = "Open Buffer Manager",
 		},
 		{
-			"<M-m>",
+			"<M-t>",
 			function()
 				require("buffer_manager.ui").toggle_quick_menu()
 				vim.defer_fn(function()
