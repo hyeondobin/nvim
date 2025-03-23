@@ -2,7 +2,7 @@
 return {
 	{
 		"saghen/blink.cmp",
-		enabled = false,
+		enabled = vim.g.completor == "blink",
 		dependencies = {
 			"rafamadriz/friendly-snippets",
 			"saghen/blink.compat",

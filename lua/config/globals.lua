@@ -18,3 +18,6 @@ vim.g.rustaceanvim = {
 }
 
 vim.g.borderStyle = "rounded"
+
+-- should be a string, either "cmp" or "blink"
+vim.g.completor = "blink"
