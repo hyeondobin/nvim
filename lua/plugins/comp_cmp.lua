@@ -23,7 +23,7 @@ return {
 	},
 	{
 		"hrsh7th/nvim-cmp",
-		enabled = true,
+		enabled = vim.g.completor == "cmp",
 		event = { "InsertEnter", "CmdlineEnter" },
 		dependencies = {
 			"neovim/nvim-lspconfig",

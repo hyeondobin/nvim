@@ -22,9 +22,8 @@ Using neovim with Neovide for gui
 
 # Completion
 
-Currently using blink.cmp for completion.
-But blink-cmp currently seems unstable for using with nix lsps, so planning to use cmp-nvim with
-nix lsps
+Using blink.cmp as completion engine.
+Backup engine is cmp-nvim, added a global variable `completor` to switch between blink and cmp easily.
 
 # Korean 한글
 

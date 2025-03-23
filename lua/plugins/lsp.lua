@@ -39,10 +39,13 @@ if vim.uv.os_uname().sysname == "Windows_NT" then
 					end,
 				})
 
-				-- blink
-				-- local lsp_capabilities = require("blink-cmp").get_lsp_capabilities()
-				-- cmp
-				local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+				-- capabilities
+				local lsp_capabilities
+				if vim.g.completor == "cmp" then
+					lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+				elseif vim.g.completor == "blink" then
+					lsp_capabilities = require("blink-cmp").get_lsp_capabilities()
+				end
 
 				local default_setup = function(server)
 					require("lspconfig")[server].setup({
@@ -159,10 +162,13 @@ else
 			})
 
 			local lsp = require("lspconfig")
-			-- -- blink
-			-- local lsp_capabilities = require("blink-cmp").get_lsp_capabilities()
-			-- cmp
-			local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+			-- capabilities
+			local lsp_capabilities
+			if vim.g.completor == "cmp" then
+				lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+			elseif vim.g.completor == "blink" then
+				lsp_capabilities = require("blink-cmp").get_lsp_capabilities()
+			end
 			-- lsp_capabilities.textDocument.foldingRange = {
 			-- 	dynamicRegistration = false,
 			-- 	lineFoldingOnly = true,
@@ -177,22 +183,22 @@ else
 			})
 
 			local hostname = vim.fn.hostname() -- get hostname
-			local on_attach = function(bufnr)
-				vim.api.nvim_create_autocmd("CursorHold", {
-					buffer = bufnr,
-					callback = function()
-						local opts = {
-							focusable = false,
-							close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-							border = "rounded",
-							source = "always",
-							prefix = " ",
-							scope = "line",
-						}
-						vim.diagnostic.open_float(nil, opts)
-					end,
-				})
-			end
+			-- local on_attach = function(bufnr)
+			-- 	vim.api.nvim_create_autocmd("CursorHold", {
+			-- 		buffer = bufnr,
+			-- 		callback = function()
+			-- 			local opts = {
+			-- 				focusable = false,
+			-- 				close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+			-- 				border = "rounded",
+			-- 				source = "always",
+			-- 				prefix = " ",
+			-- 				scope = "line",
+			-- 			}
+			-- 			vim.diagnostic.open_float(nil, opts)
+			-- 		end,
+			-- 	})
+			-- end
 			lsp.nixd.setup({
 				cmd = { "nixd" },
 				-- on_attach = on_attach(),
