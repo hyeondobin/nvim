@@ -6,16 +6,17 @@ if vim.g.neovide then
 	-- cursor effect
 	vim.g.neovide_cursor_animate_in_insert_mode = true
 	vim.g.neovide_cursor_vfx_mode = "railgun"
-	vim.g.neovide_cursor_vfx_particle_lifetime = 1
-	vim.g.neovide_cursor_vfx_particle_density = 20
-	vim.g.neovide_cursor_vfx_particle_speed = 1
-	vim.g.neovide_cursor_vfx_particle_phase = 10
+	vim.g.neovide_cursor_vfx_particle_lifetime = 0.5
+	vim.g.neovide_cursor_vfx_particle_density = 0.8
+	vim.g.neovide_cursor_vfx_particle_speed = 5
+	vim.g.neovide_cursor_vfx_particle_phase = 5
 	vim.g.neovide_cursor_vfx_particle_curl = 50
+	vim.g.neovide_cursor_vfx_particle_opacity = 50
 	vim.g.neovide_cursor_unfocused_outline_width = 0.5
 	vim.g.neovide_cursor_smooth_blink = true
 
 	-- color management
-	vim.g.neovide_transparency = 0.7
+	vim.g.neovide_opacity = 0.7
 	vim.cmd.TransparentEnable()
 	vim.g.neovide_normal_opacity = 1
 	-- vim.cmd.TransparentDisable()
@@ -39,12 +40,12 @@ if vim.g.neovide then
 
 	-- toggle transparency
 	vim.keymap.set("n", "<leader>nt", function()
-		local is_transparent = vim.g.neovide_transparency
+		local is_transparent = vim.g.neovide_opacity
 		if is_transparent ~= 1 then
-			vim.g.neovide_transparency = 1
+			vim.g.neovide_opacity = 1
 			vim.cmd.TransparentDisable()
 		else
-			vim.g.neovide_transparency = 0.7
+			vim.g.neovide_opacity = 0.7
 			-- vim.g.winblend = 30
 			vim.cmd.TransparentEnable()
 		end

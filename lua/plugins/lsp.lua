@@ -91,6 +91,7 @@ if vim.uv.os_uname().sysname == "Windows_NT" then
 						"powershell_es",
 						"eslint",
 						"taplo",
+						"ts_ls",
 					},
 					automatic_installation = true,
 					handlers = {
