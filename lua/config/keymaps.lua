@@ -72,28 +72,6 @@ map("i", "<C-]>", "<C-O>VY<C-O>$=<C-R>=<C-R>+<CR><C-o>yiw<C-O>$", { desc = "Calc
 -- leader mapping
 map("n", "<leader>fws", "<cmd>w|so<CR>", { desc = "Save and Source current file" })
 
--- DAP
-map("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>", { desc = "Toggle breakpoint" })
-map("n", "<leader>dc", "<cmd>DapContinue<CR>", { desc = "DAP Continue" })
-map("n", "<leader>df", function()
-	local widgets = require("dap.ui.widgets")
-	widgets.centered_float(widgets.frames)
-end, { desc = "DAP Float" })
-map("n", "<leader>dh", function()
-	require("dap.ui.widgets").hover()
-end, { desc = "DAP Hover" })
-map("n", "<leader>do", "<cmd>DapStepOver<CR>", { desc = "DAP Step over" })
-map("n", "<leader>dp", function()
-	require("dap.ui.widgets").preview()
-end, { desc = "DAP Preview" })
-map("n", "<leader>dr", function()
-	require("dap").repl.open()
-end, { desc = "DAP open repl" })
-map("n", "<leader>ds", function()
-	local widgets = require("dap.ui.widgets")
-	widgets.centered_float(widgets.scopes)
-end, { desc = "DAP Scope" })
-
 -- terminal keymaps
 map({ "t" }, "<Esc>", "<C-\\><C-n>", { desc = "Enter Normal mode with Esc" })
 map({ "t" }, "<C-x>", "<C-\\><C-n>", { desc = "Enter Normal mode with <C-x>" })
