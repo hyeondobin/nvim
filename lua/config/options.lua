@@ -25,15 +25,10 @@ opt.scrolloff = 15
 opt.completeopt = "menu,menuone,popup,fuzzy,preview"
 opt.cursorline = true
 opt.cursorcolumn = true
+opt.winborder = vim.g.borderStyle
 
 -- font
--- 한글 폰트
--- 기본 폰트
--- 한글인가요
--- opt.guifont = "D2CodingLigature Nerd Fonth15:cHANGEUL"
-
 opt.guifont = "JetBrainsMono NF:h15:cDEFAULT,D2CodingLigature Nerd Font:cHANGEUL"
--- opt.guifont = "JetBrainsMono NF:h15:cDEFAULT"
 
 -- Behaviour
 opt.hidden = true
@@ -48,13 +43,12 @@ opt.splitbelow = true
 opt.autochdir = false
 opt.iskeyword:append("-")
 opt.mouse:append("a")
-opt.clipboard:append("unnamedplus")
 opt.modifiable = true
 opt.encoding = "UTF-8"
 
 opt.isfname:append("@-@")
 
-opt.updatetime = 50
+opt.updatetime = 200
 opt.conceallevel = 0
-opt.timeoutlen = 200
-opt.ttimeoutlen = 200
+opt.timeoutlen = 400
+opt.ttimeoutlen = 400
