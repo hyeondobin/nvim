@@ -11,7 +11,7 @@ return {
         config = function()
             require("neoconf").setup({})
 
-            vim.lsp.enable({ "lua_ls" })
+            vim.lsp.enable({ "lua_ls", "clangd" })
 
             vim.api.nvim_create_autocmd("LspAttach", {
                 desc = "LSP actions",

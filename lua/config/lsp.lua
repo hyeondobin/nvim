@@ -1,5 +1,5 @@
 -- enable lsp
-vim.lsp.enable({"lua_ls"})
+vim.lsp.enable({ "lua_ls", "clangd" })
 
 vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(ev)
@@ -18,4 +18,3 @@ vim.diagnostic.config({
         current_line = true,
     },
 })
-
