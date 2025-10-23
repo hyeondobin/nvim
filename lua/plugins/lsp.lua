@@ -41,6 +41,11 @@ return {
                     -- stylua: ignore end
                 end,
             })
+            vim.diagnostic.config({
+                virtual_lines = {
+                    current_line = true,
+                }
+            })
         end,
     },
 }
