@@ -51,14 +51,14 @@ map("n", "#", "#zzzv", opts)
 
 -- rename word under cursor
 map("n", "S", function()
-	local cmd = ":%s/<C-r><C-w>//gI<Left><Left><Left>"
-	local keys = vim.api.nvim_replace_termcodes(cmd, true, false, true)
-	vim.api.nvim_feedkeys(keys, "n", false)
+    local cmd = ":%s/<C-r><C-w>//gI<Left><Left><Left>"
+    local keys = vim.api.nvim_replace_termcodes(cmd, true, false, true)
+    vim.api.nvim_feedkeys(keys, "n", false)
 end, { noremap = true, desc = "Rename word under cursor" })
 map("v", "S", function()
-	local cmd = ":s//gI<Left><Left><Left>"
-	local keys = vim.api.nvim_replace_termcodes(cmd, true, false, true)
-	vim.api.nvim_feedkeys(keys, "n", false)
+    local cmd = ":s//gI<Left><Left><Left>"
+    local keys = vim.api.nvim_replace_termcodes(cmd, true, false, true)
+    vim.api.nvim_feedkeys(keys, "n", false)
 end, { noremap = true, desc = "Rename word under cursor" })
 
 -- keep in/outdenting
@@ -73,7 +73,7 @@ map("i", "<C-]>", "<C-O>VY<C-O>$=<C-R>=<C-R>+<CR><C-o>yiw<C-O>$", { desc = "Calc
 map("n", "<leader>fws", "<cmd>w|so<CR>", { desc = "Save and Source current file" })
 
 -- terminal keymaps
-map({ "t" }, "<Esc>", "<C-\\><C-n>", { desc = "Enter Normal mode with Esc" })
+-- map({ "t" }, "<Esc>", "<C-\\><C-n>", { desc = "Enter Normal mode with Esc" })
 map({ "t" }, "<C-x>", "<C-\\><C-n>", { desc = "Enter Normal mode with <C-x>" })
 
 -- add ; to end of line in insert mode
